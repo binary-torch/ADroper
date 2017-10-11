@@ -1,1 +1,1 @@
-# add-drop-courses
+# Add/Drop Courses Project
