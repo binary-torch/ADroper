@@ -24,11 +24,6 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="{{ route('portal.index') }}" class="btn btn-outline {{ isset($theme) ?  "btn-rose" : "btn-white" }} btn-compact">
-                        Student Portal
-                    </a>
-                </li>
                 @if(auth()->check())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle btn {{ isset($theme) ?  "" : "btn-white" }}" data-toggle="dropdown">{{ auth()->user()->name }} <b class="caret"></b></a>
@@ -54,6 +49,12 @@
                                 </form>
                             </li>
                         </ul>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('portal.index') }}" class="btn btn-outline {{ isset($theme) ?  "btn-rose" : "btn-white" }} btn-compact">
+                            Student Portal
+                        </a>
                     </li>
                 @endif
             </ul>

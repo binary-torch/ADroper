@@ -1,8 +1,9 @@
 <?php
+
 Auth::loginUsingId(1);
 
 DB::listen(function ($query) {
-     var_dump($query->sql);
+//     var_dump($query->sql);
 //     var_dump($query->time);
 });
 

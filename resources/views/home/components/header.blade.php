@@ -54,7 +54,7 @@
                  data-aos-duration="500"
                  data-aos-once="true"
                  class="col-md-6 text-center">
-                <img width="90%" src="@image(home/header.svg)" alt="ADroper image">
+                <img width="80%" src="@image(home/header.svg)" alt="ADroper image">
             </div>
         </div>
     </div>
