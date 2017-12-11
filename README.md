@@ -1,2 +1,2 @@
 # ADroper
-## Online courses registration open-source project for International Islamic University Malaysia (IIUM).
+## Open-source project for online courses registration for International Islamic University Malaysia (IIUM).
