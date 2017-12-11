@@ -5,9 +5,7 @@ window.Vue = require('vue');
 import accordion from './app/Accordion.vue'
 import notifyMe from './app/NotifyMe.vue'
 import timeline from './app/Timeline.vue'
-import contactUs from './app/ContactUs.vue'
-import newProject from './app/NewProject.vue'
-import workshopRegistration from './app/WorkshopRegistration.vue'
+import createApplication from './app/CreateApplication.vue'
 
 const app = new Vue({
     el: '#app',
@@ -15,8 +13,6 @@ const app = new Vue({
         accordion,
         timeline,
         notifyMe,
-        contactUs,
-        newProject,
-        workshopRegistration
+        createApplication,
     }
 });
