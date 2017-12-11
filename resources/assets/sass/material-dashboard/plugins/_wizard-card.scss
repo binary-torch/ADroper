@@ -208,16 +208,16 @@
             padding: 15px 0;
         }
 
-        > li.active {
-            border-radius: 4px;
-            background-color: $brand-info;
-            @include shadow-4dp-color($brand-info);
-            > *{
-                color: #fff !important;
-            }
-            transition: all .2s ease-in-out;
-            transform: scale(1.05, 1.05);
-        }
+        //> li.active {
+        //    border-radius: 4px;
+        //    background-color: $brand-info;
+        //    @include shadow-4dp-color($brand-info);
+        //    > *{
+        //        color: #fff !important;
+        //    }
+        //    transition: all .2s ease-in-out;
+        //    transform: scale(1.05, 1.05);
+        //}
     }
 
 }

@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    @yield('custom_css')
     <style>
         [v-cloak] {
             display: none;

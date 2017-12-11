@@ -37,4 +37,5 @@ require('./material-dashboard/sweetalert2.js');
 require('./material-dashboard/jquery.bootstrap-wizard.js');
 require('./material-dashboard/bootstrap-datetimepicker.js');
 require('./material-dashboard/material-dashboard.js');
+require('./material-dashboard/demo');
 require('./material-kit/hipster-cards');

@@ -5,7 +5,18 @@
 @endsection
 
 @section('content')
-    @include('shared.navbar')
+    @include('shared.navbar', ['theme' => "navbar-default bg-light-gradient"])
     @include('auth.login.components.header')
-    @include('auth.login.components.form')
+@endsection
+
+@section('custom_js')
+    <script>
+        $().ready(function() {
+            helpers.checkFullPageBackgroundImage();
+
+            setTimeout(function() {
+                $('.card').removeClass('card-hidden');
+            }, 700)
+        });
+    </script>
 @endsection

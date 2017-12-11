@@ -23,7 +23,7 @@ class PortalController extends Controller
      */
     public function create()
     {
-        //
+        return view('portal.application.create');
     }
 
     /**

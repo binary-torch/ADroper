@@ -8,23 +8,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('about') }}">
+                    <a href="{{ route('about.index') }}">
                         Company
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('services') }}">
-                        Services
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('education') }}">
-                        Education
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('contactUs.index') }}">
-                        Contact us
                     </a>
                 </li>
             </ul>

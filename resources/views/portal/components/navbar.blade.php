@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="box-shadow: none">
     <div class="container-fluid">
         <div class="navbar-minimize">
             <button id="minimizeSidebar" class="btn btn-round btn-white btn-fill btn-just-icon">
@@ -17,8 +17,8 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        {{ auth()->user()->name }}
+                    <a class="btn btn-round btn-compact btn-rose" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        SH
                     </a>
                     <ul class="dropdown-menu">
                         <li>
@@ -27,12 +27,6 @@
                                 Home
                             </a>
                         </li>
-                        {{--<li>--}}
-                            {{--<a href="#">--}}
-                                {{--<i class="material-icons">person</i>--}}
-                                {{--Profile--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
                         <li>
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

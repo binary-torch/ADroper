@@ -25,7 +25,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#" class="btn btn-outline {{ isset($theme) ?  "" : "btn-white" }} btn-compact">
+                    <a href="{{ route('portal.index') }}" class="btn btn-outline {{ isset($theme) ?  "btn-rose" : "btn-white" }} btn-compact">
                         Student Portal
                     </a>
                 </li>
