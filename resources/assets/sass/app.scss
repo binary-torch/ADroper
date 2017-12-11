@@ -1,9 +1,10 @@
-
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
-// Variables
-@import "variables";
-
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "./material-dashboard";
+@import "~aos/dist/aos.css";
+@import "./app/global";
+@import "./app/colors";
+@import "./app/animation";
+@import "./app/timeline";
+@import "node_modules/semantic-ui-loader/loader";
+@import "node_modules/semantic-ui-dimmer/dimmer";

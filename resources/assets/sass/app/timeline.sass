@@ -1,0 +1,57 @@
+.timeline
+  list-style: none
+  position: relative
+  padding: 1px 20px 1px 40px
+  font-size: 13px
+  &:before
+    content: ''
+    width: 1px
+    height: 100%
+    position: absolute
+    border-left: 2px dashed #646464
+  li
+    position: relative
+    margin-left: 30px
+    padding: 14px
+    &:not(:first-child)
+      margin-top: 40px
+    > span
+      width: 2px
+      height: 100%
+      background: #000
+      left: -30px
+      top: 0
+      position: absolute
+      &:before, &:after
+        content: ''
+        width: 8px
+        height: 8px
+        border-radius: 50%
+        border: 3px solid #3498db
+        position: absolute
+        background: #3498db
+        left: -3px
+        top: 0
+    span:after
+      top: 100%
+    > div
+      margin-left: 10px
+  div
+    .title, .type
+      font-weight: 600
+      font-size: 12px
+    .information
+      font-weight: 300
+    > div
+      margin-top: 5px
+  span.number
+    height: 100%
+    span
+      position: absolute
+      font-size: 10px
+      left: -35px
+      font-weight: bold
+      &:first-child
+        top: 0
+      &:last-child
+        top: 100%

@@ -1,0 +1,112 @@
+.bg-red-gradient {
+  background-image: linear-gradient(-45deg, #F7648B 0%, #D44269 93%);
+}
+
+.bg-pink-gradient {
+  background-image: linear-gradient(-50deg, #A96AC3 0%, #9555AF 65%, #9252AC 74%, #8B4AA5 98%);
+}
+
+.bg-green-gradient {
+  background-image: linear-gradient(-45deg, #6FC273 0%, #4DAB52 100%) !important;
+}
+
+.bg-dark-gradient {
+  background-image: linear-gradient(-46deg, #556D84 0%, #2C4053 100%);
+}
+
+.bg-tail-gradient {
+  background-image: linear-gradient(-43deg, #27CBDD 0%, #02B7CA 100%);
+}
+
+.bg-blue-gradient {
+  background-image: linear-gradient(-43deg, #6387dd 0%, #0072ca 100%);
+}
+
+.bg-turquoise-gradient {
+  background-image: linear-gradient(45deg, #2aa699 0%, #217e95 93%);
+}
+
+.bg-very-light-gradient{
+  background-image: linear-gradient(-180deg, #FFFFFF 0%, #f4f4f4 88%);
+
+  &.blue {
+    background-image: linear-gradient(-180deg, #e8fcff 0%, #fbfbfb 88%);
+  }
+
+  &.pink{
+    background-image: linear-gradient(-180deg, #fff1ff 0%, #fbfbfb 88%);
+  }
+}
+
+.bg-light-gradient {
+  background-image: linear-gradient(-44deg, #FFFFFF 0%, #EAEAEA 88%);
+  box-shadow: 0 4px 13px 0 rgba(0,0,0,0.22);
+}
+
+.bg-white{
+  background-color: #fff !important;
+}
+
+.bg-gray{
+  background-color: #ecf0f1 !important;
+}
+
+.txt-blue-color {
+  color: #648DBD;
+}
+
+.txt-navy-color{
+  color: #2c3e50;
+}
+
+.txt-green-color {
+  color: #4DAB52;
+}
+
+.txt-black-color {
+  color: #000;
+}
+
+.txt-orange-color {
+  color: #f79f3f;
+}
+
+.txt-red-color {
+  color: #e04b54;
+}
+
+.txt-white-color {
+  color: #fff;
+}
+
+//****** STAGES COLOR ******//
+.label-math {
+  background: -moz-linear-gradient( 0deg, rgb(199,164,255) 0%, rgb(110,43,216) 100%);
+  background: -webkit-linear-gradient( 0deg, rgb(199,164,255) 0%, rgb(110,43,216) 100%);
+  background: linear-gradient( 0deg, rgb(199,164,255) 0%, rgb(110,43,216) 100%);
+}
+
+.label-programming {
+  background-image: -moz-linear-gradient( -180deg, rgb(148,211,250) 0%, rgb(59,158,221) 100%);
+  background-image: -webkit-linear-gradient( -180deg, rgb(148,211,250) 0%, rgb(59,158,221) 100%);
+  background-image: linear-gradient( -180deg, rgb(148,211,250) 0%, rgb(59,158,221) 100%);
+}
+
+.label-robotics {
+  background-image: -moz-linear-gradient( -180deg, rgb(250,149,199) 0%, rgb(222,60,140) 100%);
+  background-image: -webkit-linear-gradient( -180deg, rgb(250,149,199) 0%, rgb(222,60,140) 100%);
+  background-image: linear-gradient( -180deg, rgb(250,149,199) 0%, rgb(222,60,140) 100%);
+}
+
+.label-projects {
+  background-image: -moz-linear-gradient( -180deg, rgb(148,250,149) 0%, rgb(60,217,61) 100%);
+  background-image: -webkit-linear-gradient( -180deg, rgb(148,250,149) 0%, rgb(60,217,61) 100%);
+  background-image: linear-gradient( -180deg, rgb(148,250,149) 0%, rgb(60,217,61) 100%);
+}
+
+//****** FILTERS ******//
+.gray-image-filter {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: 0.5;
+}

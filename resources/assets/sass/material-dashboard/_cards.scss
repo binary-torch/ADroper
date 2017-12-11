@@ -1,0 +1,400 @@
+.card {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    border-radius: 10px;
+    color: $mdb-card-body-text;
+    background: $mdb-card-body-background;
+    box-shadow: 0 7px 26px 0 rgba(0,0,0,0.09);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 0px 10px 0 rgba(0,0,0,0.09);
+    }
+
+    &.accordion {
+        .content {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex: 1 1 100%;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 40px 40px 100px;
+
+            img {
+                top: calc(50% - 50px); width: 100px; height: 100px; left: -10px; position: absolute;
+            }
+            div {
+                padding-left: 20px;
+            }
+            i {
+                top: calc(50%); right: 20px; position: absolute;
+            }
+        }
+    }
+
+    &[data-background="color"]{
+        .title{
+            font-weight: bold;
+        }
+
+        .title,
+        .stats,
+        .category,
+        .description,
+        .content,
+        .footer,
+        small,
+        a{
+            color: $white-color;
+        }
+
+        a:hover,
+        a:focus{
+            color: $white-color;
+        }
+
+        .icon{
+            i{
+                color: #FFFFFF;
+                border: 2px solid rgba(255,255,255,.6);
+            }
+        }
+
+        &.card-with-border:after{
+            border: 1px solid rgba(255, 255, 255, 0.45);
+        }
+    }
+
+    &[data-color="blue"]{
+        @include card-radial-gradient ($icon-blue-color-top, $icon-blue-color-bottom);
+    }
+
+    &[data-color="azure"]{
+        @include card-radial-gradient ($icon-azure-color-top, $icon-azure-color-bottom);
+    }
+
+    &[data-color="green"]{
+        @include card-radial-gradient ($icon-green-color-top, $icon-green-color-bottom);
+    }
+
+    &[data-color="orange"]{
+        @include card-radial-gradient ($icon-orange-color-top, $icon-orange-color-bottom);
+    }
+
+    &[data-color="red"]{
+        @include card-radial-gradient ($icon-red-color-top, $icon-red-color-bottom);
+    }
+
+    &[data-color="black"]{
+        @include card-radial-gradient ($icon-black-color-top, $icon-black-color-bottom);
+    }
+
+    .card-height-indicator {
+        margin-top: 100%;
+    }
+    .card-content {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    &.card-top-bar {
+        border-top: 2px solid;
+        &.blue {
+            border-top-color: #269abc;
+        }
+
+        &.red {
+            border-top-color: #bc445f;
+        }
+    }
+
+    .card-image {
+        height: 60%;
+        position: relative;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            pointer-events: none;
+        }
+        .card-image-headline {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            color: $mdb-card-image-headline;
+            font-size: 1.5em;
+            background-color: rgba(2,179,228,0.6);
+            width: 100%;
+            height: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            &.green {
+                background-color: rgba(2,204,186,0.6);
+            }
+            &.pink {
+                background-color: rgba(169,81,237,0.6);
+            }
+            &.gray {
+                background-color: rgba(125,151,173,0.6);
+            }
+            &.orange {
+                background-color: rgba(255,162,52,0.6);
+            }
+            &.red {
+                background-color: rgba(255,84,131,0.3);
+            }
+            &.none {
+                background-color: transparent;
+            }
+        }
+    }
+
+    .content{
+        padding: 30px;
+    }
+
+    .card-footer {
+        height: 10%;
+        padding: 40px;
+        button, a {
+            margin: 0 !important;
+            position: relative;
+            bottom: 25px;
+            width: auto;
+            &:first-child {
+                left: -15px;
+            }
+        }
+        .card-footer-images{
+            img{
+                height: 30px;
+            }
+        }
+    }
+
+    .tag{
+        position: absolute; margin: 20px 0px 0px 20px;
+        z-index: 50;
+
+        .label {
+            background-color: #fff;
+            &.green {
+                color: rgb(2,204,186);
+            }
+            &.pink {
+                color: rgb(169,81,237);
+            }
+            &.gray {
+                color: rgb(125,151,173);
+            }
+            &.orange {
+                color: rgb(255,162,52);
+            }
+            &.red {
+                color: rgb(255,84,131);
+            }
+            &.blue {
+                color: rgb(2,179,228);
+            }
+        }
+    }
+
+    [class*="header-"]{
+        color: #FFFFFF;
+    }
+
+    .header{
+        @include shadow-big();
+        margin: $margin-base;
+        border-radius: $border-radius-base;
+        padding: $padding-base 0;
+        background-color: $white-color;
+    }
+
+
+    .card-header{
+        padding: 15px 20px 0;
+        z-index: 3;
+        .category{
+            margin-bottom: 0;
+        }
+
+        &.card-header-text{
+            display: inline-block;
+
+            &:after{
+                content: "";
+                display: table;
+            }
+        }
+
+        &.card-header-icon{
+             //display: inline-block;
+            float: left;
+
+            i{
+                width: 33px;
+                height: 33px;
+                text-align: center;
+                line-height: 33px;
+                margin: 10px;
+            }
+        }
+
+        &.card-header-tabs{
+            .nav-tabs{
+                background: transparent;
+                padding: 0;
+            }
+            .nav-tabs-title{
+                float: left;
+                padding: 10px 10px 10px 0;
+                line-height: 24px;
+            }
+        }
+
+        &.card-header-icon + .card-content .card-title{
+            padding-bottom: 15px;
+        }
+    }
+
+    [data-background-color]{
+        @include shadow-big();
+        margin: -20px $margin-base 0;
+        border-radius: $border-radius-base;
+        padding: $padding-base;
+        background-color: $gray-color;
+        position: relative;
+
+        .card-title{
+            color: $white-color;
+        }
+        .category{
+            margin-bottom: 0;
+            color: rgba($white-color, .62);
+        }
+
+        .ct-label{
+            color: rgba($white-color, .7);
+        }
+        .ct-grid{
+            stroke: rgba(255, 255, 255, 0.2);
+        }
+        .ct-series-a .ct-point,
+        .ct-series-a .ct-line,
+        .ct-series-a .ct-bar,
+        .ct-series-a .ct-slice-donut{
+            stroke: rgba(255,255,255,.8);
+        }
+        .ct-series-a .ct-slice-pie,
+        .ct-series-a .ct-area{
+            fill: rgba(255,255,255,.4);
+        }
+    }
+
+    [data-background-color="purple"]{
+        background: linear-gradient(60deg, $purple-400, $purple-600);
+        @include shadow-big-color($brand-primary);
+    }
+
+    [data-icon-bg-color="purple"]{
+        @include alert-icon-color($brand-primary);
+    }
+
+    [data-background-color="blue"]{
+        background: linear-gradient(60deg, $cyan-400, $cyan-600);
+        @include shadow-big-color($brand-info);
+    }
+
+    [data-icon-bg-color="blue"]{
+        @include alert-icon-color($brand-info);
+    }
+
+    [data-background-color="green"]{
+        background: linear-gradient(60deg, $green-400, $green-600);
+        @include shadow-big-color($brand-success);
+    }
+
+    [data-icon-bg-color="green"]{
+        @include alert-icon-color($brand-success);
+    }
+
+    [data-background-color="orange"]{
+        background: linear-gradient(60deg, $orange-400, $orange-600);
+        @include shadow-big-color($brand-warning);
+    }
+
+    [data-icon-bg-color="orange"]{
+        @include alert-icon-color($brand-warning);
+    }
+
+    [data-background-color="red"]{
+        background: linear-gradient(60deg, $red-400, $red-600);
+        @include shadow-big-color($brand-danger);
+    }
+
+    [data-icon-bg-color="red"]{
+        @include alert-icon-color($brand-danger);
+    }
+
+    [data-background-color="rose"]{
+        background: linear-gradient(60deg, $pink-400, $pink-600);
+        @include shadow-big-color($brand-rose);
+    }
+
+    [data-icon-bg-color="rose"]{
+        @include alert-icon-color($brand-rose);
+    }
+
+    [data-background-color]{
+        color: $white-color;
+
+        a{
+            color: $white-color;
+        }
+    }
+}
+
+.card-stats{
+    .card-title{
+        margin: 0;
+    }
+    .card-header{
+        float: left;
+        text-align: center;
+
+        i{
+            font-size: 36px;
+            line-height: 56px;
+            width: 56px;
+            height: 56px;
+        }
+    }
+    .card-content{
+        position: relative;
+        text-align: right;
+        padding: 30px 30px 0px 30px;
+    }
+}
+
+.card-raised{
+    @include shadow-big();
+}
+
+@media (max-width: 991px){
+    .card-stats{
+        margin-top: 40px;
+    }
+}
