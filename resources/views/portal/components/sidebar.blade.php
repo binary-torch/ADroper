@@ -17,12 +17,13 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            {{--<li class="@yield('workshops-active')">--}}
-                {{--<a href="{{ route('portal.workshops') }}">--}}
-                    {{--<i class="material-icons">work</i>--}}
-                    {{--<p>Workshops</p>--}}
-                {{--</a>--}}
-            {{--</li>--}}
+
+            <li class="@yield('create-application-active')">
+                <a href="{{ route('portal.application.create') }}">
+                    <i class="material-icons">assignment</i>
+                    <p>New Application</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

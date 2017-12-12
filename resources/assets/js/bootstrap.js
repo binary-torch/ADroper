@@ -39,3 +39,4 @@ require('./material-dashboard/bootstrap-datetimepicker.js');
 require('./material-dashboard/material-dashboard.js');
 require('./material-dashboard/demo');
 require('./material-kit/hipster-cards');
+require('vue2-animate/dist/vue2-animate.min.css');
