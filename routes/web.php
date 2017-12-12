@@ -24,3 +24,7 @@ Route::group(['prefix' => '/portal', 'middleware' => 'auth'], function(){
         Route::post('/types', ['uses' => 'ApplicationController@types']);
     });
 });
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
