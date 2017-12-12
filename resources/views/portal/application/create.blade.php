@@ -7,9 +7,3 @@
         </div>
     </div>
 @endsection
-
-@section('custom_js')
-    <script>
-        helpers.initMaterialWizard();
-    </script>
-@endsection

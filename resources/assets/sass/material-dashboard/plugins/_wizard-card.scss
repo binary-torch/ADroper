@@ -42,6 +42,7 @@
         color: $white-color;
         cursor: pointer;
         font-weight: 500;
+        z-index: 100;
     }
 
     &[data-color="purple"]{

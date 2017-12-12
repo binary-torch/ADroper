@@ -16,10 +16,11 @@ class CreateApplicationsTable extends Migration
         Schema::create('applications', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->index();
-            $table->integer('college_id');
             $table->integer('course_id');
             $table->integer('section_id');
             $table->integer('application_type_id');
+            $table->integer('application_status_id')->default(1);
+            $table->string('token')->nullable();
             $table->string('message')->nullable();
             $table->timestamps();
         });

@@ -14,6 +14,13 @@ class Section extends Model
     protected $guarded = [];
     
     /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ["lecturer"];
+    
+    /**
      * Get the course which this section belongs to.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

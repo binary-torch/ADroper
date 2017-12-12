@@ -16,5 +16,11 @@ Auth::routes();
 
 Route::group(['prefix' => '/portal', 'middleware' => 'auth'], function(){
     Route::get('/', ['uses' => 'PortalController@index'])->name('portal.index');
-    Route::get('/application/create', ['uses' => 'PortalController@create'])->name('portal.application.create');
+    
+    Route::group(['prefix' => '/application'], function(){
+        Route::get('/create', ['uses' => 'ApplicationController@create'])->name('portal.application.create');
+        Route::post('/store', ['uses' => 'ApplicationController@store']);
+        Route::post('/courses', ['uses' => 'ApplicationController@courses']);
+        Route::post('/types', ['uses' => 'ApplicationController@types']);
+    });
 });

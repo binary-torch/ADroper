@@ -14,13 +14,6 @@ class College extends Model
     protected $guarded = [];
     
     /**
-     * The relations to eager load on every query.
-     *
-     * @var array
-     */
-    protected $with = ['courses', 'courses.sections'];
-    
-    /**
      * Get all courses of this college.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

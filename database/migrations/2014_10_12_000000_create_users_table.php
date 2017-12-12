@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('matric_number')->unique();
             $table->string('matric_uuid')->nullable()->unique();
+            $table->integer('college_id')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

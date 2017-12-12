@@ -15,17 +15,7 @@ class PortalController extends Controller
     {
         return view('portal.index');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('portal.application.create');
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *

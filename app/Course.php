@@ -14,6 +14,13 @@ class Course extends Model
     protected $guarded = [];
     
     /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ["sections"];
+    
+    /**
      * Get all sections of this course.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

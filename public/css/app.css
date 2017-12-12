@@ -12559,6 +12559,7 @@ be a descendant of the grid when it is being dragged.
   color: #FFFFFF;
   cursor: pointer;
   font-weight: 500;
+  z-index: 100;
 }
 
 .wizard-card[data-color="purple"] .moving-tab {

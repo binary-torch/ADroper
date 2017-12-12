@@ -30,14 +30,23 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $with = ['applications'];
+    protected $with = ['applications', 'college'];
     
     /**
-     * Get all the user's applications
+     * Get all the user's applications.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function applications(){
         return $this->hasMany(Application::class);
+    }
+    
+    /**
+     * Get the college that this user belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function college(){
+        return $this->belongsTo(College::class);
     }
 }
