@@ -62,7 +62,7 @@
                     <div class="clearfix"></div>
                     <div class="content">
                         <div>
-                            <h3><i class="material-icons">assignment</i> Application Type: <span class="label" :class="label(selectedApplication.type)">{{ selectedApplication.type }}</span></h3>
+                            <h3><i class="material-icons">assignment</i> Application Type <span class="label" :class="label(selectedApplication.type)">{{ selectedApplication.type }}</span></h3>
                         </div>
                         <div class="table-responsive">
                             <table class="table">
@@ -86,7 +86,7 @@
                         </div>
                         
                         <div class="margin-top-20">
-                            <h3><i class="material-icons">assignment</i> Application Progress: <span class="label" :class="label(selectedApplication.type)">{{ selectedApplication.type }}</span></h3>
+                            <h3><i class="material-icons">assignment</i> Application Progress</h3>
     
                             <div class="alert alert-info alert-with-icon" data-notify="container">
                                 <i class="material-icons" data-notify="icon">notifications</i>
@@ -102,17 +102,17 @@
                                     Sent
                                 </h6>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-xs-3">
                                 <h6>
                                     Lecturer Approval
                                 </h6>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-xs-3">
                                 <h6>
                                     S.A. Approval
                                 </h6>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-xs-3">
                                 <h6>
                                     Course Added
                                 </h6>
@@ -162,7 +162,8 @@
                 return status.includes('Rej') ? "danger" : "success";
             },
             label(status){
-                return status.includes('Rej') ? "label-danger" : "label-success";
+                console.log(status);
+                return status.includes('Drop') ? "label-danger" : "label-success";
             },
             showApplication(application){
                 this.showAllApplications = false;

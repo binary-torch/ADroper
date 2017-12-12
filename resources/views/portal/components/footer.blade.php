@@ -9,13 +9,13 @@
                 </li>
                 <li>
                     <a href="{{ route('about.index') }}">
-                        Company
+                        About
                     </a>
                 </li>
             </ul>
         </nav>
         <p class="copyright pull-right">
-            Binary Torch Sdn. Bhd. 2017 © All rights reserved
+            ADroper 2017 © All rights reserved
         </p>
     </div>
 </footer>

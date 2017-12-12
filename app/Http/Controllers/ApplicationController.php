@@ -49,7 +49,11 @@ class ApplicationController extends Controller
      */
     public function store(CreateApplicationFormRequest $request)
     {
-        $application = auth()->user()->applications()->where('application_type_id', $request->application_type_id)->first();
+        $application = auth()->user()->applications()->where([
+            'course_id'             =>  $request->course_id,
+            'section_id'            => $request->section_id,
+            'application_type_id'   => $request->application_type_id
+        ])->first();
         
         if($application){
             return response()->json([

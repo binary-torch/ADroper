@@ -341,8 +341,9 @@
                     "section_id" : this.selectedSection.id
                 }).then(response => {
                     this.isLoading = false;
-                    console.log(response.data);
+                    window.location.replace("/portal");
                 }).catch(error => {
+                    alert("something went wrong!");
                     this.isLoading = false;
                 });
             }
