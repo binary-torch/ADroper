@@ -6,7 +6,7 @@
 
 @section('content')
     @include('shared.navbar', ['theme' => "navbar-default bg-light-gradient"])
-    @include('auth.login.components.header')
+    <login server="{{ config('app.server') }}"></login>
 @endsection
 
 @section('custom_js')

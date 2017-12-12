@@ -35,7 +35,7 @@ class Application extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function status(){
-        return $this->belongsTo(ApplicationStatus::class);
+        return $this->belongsTo(ApplicationStatus::class, 'application_status_id');
     }
     
     /**
@@ -44,6 +44,51 @@ class Application extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function type(){
-        return $this->belongsTo(ApplicationType::class);
+        return $this->belongsTo(ApplicationType::class, 'application_type_id');
+    }
+
+    /**
+     * Get the application course.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function course(){
+        return $this->belongsTo(Course::class, 'course_id');
+    }
+
+    /**
+     * Get the application section.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function section(){
+        return $this->belongsTo(Section::class, 'section_id');
+    }
+
+    /**
+     * Return the progress percentage of the application.
+     *
+     * @return int
+     */
+    public function percentage()
+    {
+        $percentage = 0;
+
+        switch ($this->status->name) {
+            case ApplicationStatus::Sent:
+                $percentage = 25;
+                break;
+            case ApplicationStatus::LecturerApproved || ApplicationStatus::LecturerRejected:
+                $percentage = 50;
+                break;
+            case ApplicationStatus::SAApproved || ApplicationStatus::SARejected:
+                $percentage = 75;
+                break;
+            case ApplicationStatus::Completed:
+                $percentage = 100;
+                break;
+        }
+
+        return $percentage;
     }
 }

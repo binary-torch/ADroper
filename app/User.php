@@ -24,14 +24,14 @@ class User extends \TCG\Voyager\Models\User
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
+
     /**
-     * The relations to eager load on every query.
+     * Get the applications count associated with this user.
      *
      * @var array
      */
-    protected $with = ['applications', 'college'];
-    
+    protected $withCount = ['applications'];
+
     /**
      * Get all the user's applications.
      *

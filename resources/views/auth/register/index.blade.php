@@ -6,7 +6,7 @@
 
 @section('content')
     @include('shared.navbar', ['theme' => "navbar-default bg-light-gradient"])
-    @include('auth.register.components.header')
+    <register></register>
 @endsection
 
 @section('custom_js')

@@ -17,6 +17,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Server
+    |--------------------------------------------------------------------------
+    | Determine the server place of the app either it is online or inside the
+    | the actual box of Smart Counter at international islamic university
+    | and that will be useful to link the RFID for all users to login.
+    |
+    */
+    'server' => env('APP_SERVER', 'online'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |
