@@ -32,7 +32,8 @@ class ApplicationStatus extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function applications(){
+    public function applications()
+    {
         return $this->hasMany(Application::class);
     }
     
@@ -42,7 +43,8 @@ class ApplicationStatus extends Model
      * @param $status
      * @return int
      */
-    public static function percentage($status){
+    public static function percentage($status)
+    {
         $percentage = 0;
         
         if($status == self::Sent){
@@ -64,7 +66,8 @@ class ApplicationStatus extends Model
      * @param $status
      * @return string
      */
-    public static function feedback($status){
+    public static function feedback($status)
+    {
         switch ($status) {
             case self::Sent:
                 return self::SentResponse;

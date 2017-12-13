@@ -18,7 +18,8 @@ class ApplicationType extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function applications(){
+    public function applications()
+    {
         return $this->hasMany(Application::class);
     }
 }

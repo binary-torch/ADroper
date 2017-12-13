@@ -74526,7 +74526,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.isLoading = true;
-            axios.post('/portal/application/courses').then(function (response) {
+            axios.post('/portal/college/courses').then(function (response) {
                 _this.courses = response.data.data.courses;
                 _this.isLoading = false;
             }).catch(function (error) {
@@ -76574,7 +76574,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: new __WEBPACK_IMPORTED_MODULE_1__core_Form__["a" /* default */]({
+                "name": "",
                 "email": "",
+                "college_id": "",
+                "matric_number": "",
+                "matric_uuid": "",
                 "password": ""
             }),
             isLoading: false,

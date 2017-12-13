@@ -25,7 +25,8 @@ class Application extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
     
@@ -34,7 +35,8 @@ class Application extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function status(){
+    public function status()
+    {
         return $this->belongsTo(ApplicationStatus::class, 'application_status_id');
     }
     
@@ -43,7 +45,8 @@ class Application extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function type(){
+    public function type()
+    {
         return $this->belongsTo(ApplicationType::class, 'application_type_id');
     }
 
@@ -52,7 +55,8 @@ class Application extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function course(){
+    public function course()
+    {
         return $this->belongsTo(Course::class, 'course_id');
     }
 
@@ -61,7 +65,8 @@ class Application extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function section(){
+    public function section()
+    {
         return $this->belongsTo(Section::class, 'section_id');
     }
 }

@@ -299,7 +299,7 @@
             },
             fetchCoursesWithSections(){
                 this.isLoading = true;
-                axios.post('/portal/application/courses')
+                axios.post('/portal/college/courses')
                     .then(response => {
                         this.courses = response.data.data.courses;
                         this.isLoading = false;

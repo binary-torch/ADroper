@@ -25,7 +25,8 @@ class Course extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function sections(){
+    public function sections()
+    {
         return $this->hasMany(Section::class);
     }
 }

@@ -92,7 +92,11 @@
         data(){
             return {
                 form: new Form({
+                    "name" : "",
                     "email" : "",
+                    "college_id" : "",
+                    "matric_number" : "",
+                    "matric_uuid" : "",
                     "password" : ""
                 }),
                 isLoading: false,

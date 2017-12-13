@@ -20,6 +20,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'matric_number' => $faker->unique()->numerify("#######"),
+        'college_id' => \App\College::inRandomOrder()->first()->id,
         'matric_uuid' => $faker->unique()->uuid,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),

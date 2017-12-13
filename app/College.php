@@ -18,7 +18,8 @@ class College extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function courses(){
+    public function courses()
+    {
         return $this->hasMany(Course::class);
     }
 }

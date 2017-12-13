@@ -21,9 +21,7 @@ class User extends \TCG\Voyager\Models\User
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * Get the applications count associated with this user.
@@ -37,7 +35,8 @@ class User extends \TCG\Voyager\Models\User
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function applications(){
+    public function applications()
+    {
         return $this->hasMany(Application::class);
     }
     
@@ -46,7 +45,8 @@ class User extends \TCG\Voyager\Models\User
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function college(){
+    public function college()
+    {
         return $this->belongsTo(College::class);
     }
 }

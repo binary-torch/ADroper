@@ -25,7 +25,8 @@ class Section extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function course(){
+    public function course()
+    {
         return $this->belongsTo(Course::class);
     }
     
@@ -34,7 +35,8 @@ class Section extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function lecturer(){
+    public function lecturer()
+    {
         return $this->belongsTo(User::class);
     }
 }

@@ -4,14 +4,6 @@ use Illuminate\Database\Seeder;
 
 class CollegesSeeds extends Seeder
 {
-    protected $colleges = [
-        "LAWS",
-        "ECONS",
-        "IRKHS",
-        "ENGIN",
-        "KICT",
-    ];
-    
     /**
      * Run the database seeds.
      *
@@ -19,10 +11,6 @@ class CollegesSeeds extends Seeder
      */
     public function run()
     {
-        foreach($this->colleges as $college) {
-            factory(\App\College::class, [
-                "name" => $college
-            ])->create();
-        }
+        factory(\App\College::class, 5)->create();
     }
 }

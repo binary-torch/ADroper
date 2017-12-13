@@ -29,9 +29,9 @@ class DatabaseSeeder extends Seeder
         $this->truncate();
         
         if (App::environment('local')) {
-            $this->call(UsersSeeds::class);
             $this->call(CollegesSeeds::class);
             $this->call(CoursesSeeds::class);
+            $this->call(UsersSeeds::class);
             $this->call(SectionsSeeds::class);
         }
          

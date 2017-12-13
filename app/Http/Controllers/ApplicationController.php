@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\ApplicationType;
-use App\Course;
 use App\Application;
 use App\Http\Requests\CreateApplicationFormRequest;
 use App\Http\Resources\ApplicationTypeCollection;
 use Illuminate\Http\Request;
-use App\Http\Resources\CourseCollection;
 use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
@@ -66,18 +64,10 @@ class ApplicationController extends Controller
     /**
      * Get the available courses and sections.
      *
-     * @return PortalController[]|CourseCollection|\Illuminate\Database\Eloquent\Collection
-     */
-    public function courses(){
-        return new CourseCollection(Course::all());
-    }
-    
-    /**
-     * Get the available courses and sections.
-     *
      * @return ApplicationTypeCollection
      */
-    public function types(){
+    public function types()
+    {
         return new ApplicationTypeCollection(ApplicationType::all());
     }
 }

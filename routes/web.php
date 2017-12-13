@@ -18,7 +18,11 @@ Route::group(['prefix' => '/portal', 'middleware' => 'auth'], function(){
     Route::group(['prefix' => '/application'], function(){
         Route::get('/create', ['uses' => 'ApplicationController@create'])->name('portal.application.create');
         Route::post('/store', ['uses' => 'ApplicationController@store']);
-        Route::post('/courses', ['uses' => 'ApplicationController@courses']);
         Route::post('/types', ['uses' => 'ApplicationController@types']);
+    });
+    
+    Route::group(['prefix' => '/college'], function(){
+        Route::get('/all', ['uses' => 'CollegeController@all']);
+        Route::post('/courses', ['uses' => 'CollegeController@courses']);
     });
 });
