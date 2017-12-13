@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\ApplicationStatus;
 use Illuminate\Http\Resources\Json\Resource;
 
 class Application extends Resource
@@ -20,8 +21,9 @@ class Application extends Resource
             "lecturer" => $this->section->lecturer->name,
             "type" => $this->type->name,
             "status" => $this->status->name,
-            "percentage" => $this->percentage(),
             "message" => $this->message,
+            "percentage" => ApplicationStatus::percentage($this->percentage),
+            "feedback" => ApplicationStatus::feedback($this->status->name),
         ];
     }
 }
