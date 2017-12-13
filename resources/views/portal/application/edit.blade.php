@@ -4,5 +4,5 @@
 
 @section('content')
     @include('shared.defautlNavbar')
-    <approval token="{{ $application->token }}"></approval>
+    <approval token="{{ $token }}"></approval>
 @endsection

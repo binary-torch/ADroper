@@ -77000,7 +77000,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.isLoading = true;
             axios.post(this.url, {
-                "approved": this.approved
+                "isApproved": this.approved,
+                "message": this.message
             }).then(function (response) {
                 _this.isLoading = false;
                 alert("Success!, thank you!");

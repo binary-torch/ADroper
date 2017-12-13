@@ -27,5 +27,5 @@ Route::group(['prefix' => '/portal', 'middleware' => 'auth'], function(){
     });
 });
 
-Route::get('/application/{token}', ['uses' => 'ApplicationController@edit']);
-Route::post('/application/{token}/update', ['uses' => 'ApplicationController@update']);
+Route::get('/application/{application}', ['uses' => 'ApplicationController@edit']);
+Route::post('/application/{application}/update', ['uses' => 'ApplicationController@update']);

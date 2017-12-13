@@ -61,7 +61,8 @@
             submit(){
                 this.isLoading = true;
                 axios.post(this.url, {
-                    "approved" : this.approved
+                    "isApproved" : this.approved,
+                    "message" : this.message
                 }).then(response => {
                     this.isLoading = false;
                     alert("Success!, thank you!");

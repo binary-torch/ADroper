@@ -71,4 +71,49 @@ class Application extends Model
     {
         return $this->belongsTo(Section::class, 'section_id');
     }
+    
+    /**
+     * Application main route key.
+     *
+     * @return string
+     */
+    public function getRouteKeyName(){
+        return 'token';
+    }
+    
+    public function handleLecturerApproval($isApproved, $message){
+        $this->generateNewToken();
+        $this->message = $message;
+        
+        $ASI_LecturerApproved = ApplicationStatus::where('name', ApplicationStatus::LecturerApproved)->first()->id;
+        $ASI_LecturerRejected = ApplicationStatus::where('name', ApplicationStatus::LecturerRejected)->first()->id;
+        
+        if($isApproved){
+            $this->application_status_id = $ASI_LecturerApproved;
+        }else{
+            $this->application_status_id = $ASI_LecturerRejected;
+        }
+        
+        $this->save();
+    }
+    
+    public function handleStudentsAffairsApproval($isApproved, $message){
+        $this->token = null;
+        $this->message = $message;
+        
+        $ASI_SACompleted = ApplicationStatus::where('name', ApplicationStatus::Completed)->first()->id;
+        $ASI_SARejected = ApplicationStatus::where('name', ApplicationStatus::SARejected)->first()->id;
+        
+        if($isApproved){
+            $this->application_status_id = $ASI_SACompleted;
+        }else{
+            $this->application_status_id = $ASI_SARejected;
+        }
+        
+        $this->save();
+    }
+    
+    public function generateNewToken(){
+        $this->token = str_limit(md5( time() . str_random(25)), 25, '');
+    }
 }

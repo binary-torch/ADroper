@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\ApplicationStatus;
 use App\ApplicationType;
 use App\Application;
 use App\Http\Requests\CreateApplicationFormRequest;
 use App\Http\Resources\ApplicationTypeCollection;
 use App\Mail\ApplicationCreated;
+use App\Mail\ApplicationLecturerApproved;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -47,24 +49,36 @@ class ApplicationController extends Controller
     /**
      * Display the specified resource for editing.
      *
-     * @param  $token
+     * @param Application $application
      * @return \Illuminate\Http\Response
+     * @internal param $token
      */
-    public function edit($token)
+    public function edit(Application $application)
     {
-        return view('portal.application.edit', ["application" => Application::whereToken($token)->firstOrFail()]);
+        return view('portal.application.edit', ["token" => $application->token]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Application  $application
+     * @param  $application
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Application $application)
     {
-        //
+        $request->validate([ "isApproved" => "required" ]);
+        
+        if($application->status->name == ApplicationStatus::Sent){
+            $application->handleLecturerApproval($request->isApproved, $request->message);
+            if($request->isApproved) {
+                $this->notifyStudentsAffairs($application);
+            };
+        }else if($application->status->name == ApplicationStatus::LecturerApproved){
+            $application->handleStudentsAffairsApproval($request->isApproved, $request->message);
+        }
+        
+        return response()->json('okay',200);
     }
     
     /**
@@ -85,5 +99,16 @@ class ApplicationController extends Controller
     public function notifyLecturer(Application $application){
         Mail::to($application->section->lecturer->email)
             ->send(new ApplicationCreated($application));
+    }
+    
+    /**
+     * Send an email to the lecturer who teach the registered section by the student.
+     *
+     * @param Application $application
+     */
+    public function notifyStudentsAffairs(Application $application){
+        //$application->course->college->email
+        Mail::to("test@cc.c")
+            ->send(new ApplicationLecturerApproved($application));
     }
 }
