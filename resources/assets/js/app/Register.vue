@@ -5,11 +5,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="spacer"></div>
-                        <div class="col-md-10 col-md-offset-1">
+                        <div :class="containerCardWidth">
                             <div class="card card-signup card-hidden">
                                 <h2 class="card-title text-center">Create new account</h2>
                                 <div class="row">
-                                    <div class="col-md-5 col-md-offset-1">
+                                    <div class="col-md-5 col-md-offset-1" v-if="isLocalServer">
                                         <div class="content">
                                             <div class="info info-horizontal">
                                                 <div class="icon icon-rose">
@@ -28,7 +28,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div :class="cardWidth">
                                         <form class="form">
                                             <div class="content">
                                                 <div class="text-center">
@@ -82,7 +82,47 @@
 </template>
 
 <script>
-    export default {
+    import loader from '../components/Loader.vue'
+    import Form from '../core/Form'
 
+    export default {
+        data(){
+            return {
+                form: new Form({
+                    "email" : "",
+                    "password" : ""
+                }),
+                isLoading: false,
+                url: "/login"
+            }
+        },
+        props: ['server'],
+        computed: {
+            isLocalServer() {
+                return this.server == "local";
+            },
+            cardWidth(){
+                return this.server == "local" ? "col-md-5" : "col-md-12";
+            },
+            containerCardWidth(){
+                return this.server == "local" ? "col-md-10 col-md-offset-1" : "col-md-6 col-md-offset-3";
+            }
+        },
+        methods: {
+            submit() {
+                if( ! this.form.valid() ) return;
+
+                this.isLoading = true;
+                this.form.post(this.url).then(response => {
+                    this.isLoading = false;
+                    window.location.replace("/portal");
+                }).catch(() => {
+                    this.isLoading = false;
+                });
+            }
+        },
+        components: {
+            loader
+        }
     }
 </script>-

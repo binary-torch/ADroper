@@ -76473,6 +76473,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Loader_vue__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Loader_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Loader_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_Form__ = __webpack_require__(226);
 //
 //
 //
@@ -76557,7 +76560,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            form: new __WEBPACK_IMPORTED_MODULE_1__core_Form__["a" /* default */]({
+                "email": "",
+                "password": ""
+            }),
+            isLoading: false,
+            url: "/login"
+        };
+    },
+
+    props: ['server'],
+    computed: {
+        isLocalServer: function isLocalServer() {
+            return this.server == "local";
+        },
+        cardWidth: function cardWidth() {
+            return this.server == "local" ? "col-md-5" : "col-md-12";
+        },
+        containerCardWidth: function containerCardWidth() {
+            return this.server == "local" ? "col-md-10 col-md-offset-1" : "col-md-6 col-md-offset-3";
+        }
+    },
+    methods: {
+        submit: function submit() {
+            var _this = this;
+
+            if (!this.form.valid()) return;
+
+            this.isLoading = true;
+            this.form.post(this.url).then(function (response) {
+                _this.isLoading = false;
+                window.location.replace("/portal");
+            }).catch(function () {
+                _this.isLoading = false;
+            });
+        }
+    },
+    components: {
+        loader: __WEBPACK_IMPORTED_MODULE_0__components_Loader_vue___default.a
+    }
+});
 
 /***/ }),
 /* 239 */
@@ -76567,182 +76615,157 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0, false, false)
+  return _c("div", { staticClass: "wrapper wrapper-full-page" }, [
+    _c("div", { staticClass: "wrapper wrapper-full-page" }, [
+      _c(
+        "div",
+        {
+          staticClass: "full-page register-page",
+          attrs: {
+            "filter-color": "black",
+            "data-image": "images/register/background.jpg"
+          }
+        },
+        [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "spacer" }),
+              _vm._v(" "),
+              _c("div", { class: _vm.containerCardWidth }, [
+                _c("div", { staticClass: "card card-signup card-hidden" }, [
+                  _c("h2", { staticClass: "card-title text-center" }, [
+                    _vm._v("Create new account")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _vm.isLocalServer
+                      ? _c("div", { staticClass: "col-md-5 col-md-offset-1" }, [
+                          _vm._m(0, false, false)
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("div", { class: _vm.cardWidth }, [
+                      _vm._m(1, false, false)
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "wrapper wrapper-full-page" }, [
-      _c("div", { staticClass: "wrapper wrapper-full-page" }, [
-        _c(
-          "div",
-          {
-            staticClass: "full-page register-page",
-            attrs: {
-              "filter-color": "black",
-              "data-image": "images/register/background.jpg"
-            }
-          },
-          [
-            _c("div", { staticClass: "container" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "spacer" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-10 col-md-offset-1" }, [
-                  _c("div", { staticClass: "card card-signup card-hidden" }, [
-                    _c("h2", { staticClass: "card-title text-center" }, [
-                      _vm._v("Create new account")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-5 col-md-offset-1" }, [
-                        _c("div", { staticClass: "content" }, [
-                          _c("div", { staticClass: "info info-horizontal" }, [
-                            _c("div", { staticClass: "icon icon-rose" }, [
-                              _c("i", { staticClass: "material-icons" }, [
-                                _vm._v("nfc")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "description" }, [
-                              _c("h4", { staticClass: "info-title" }, [
-                                _vm._v("Matric Card")
-                              ]),
-                              _vm._v(" "),
-                              _c("p", { staticClass: "description" }, [
-                                _vm._v(
-                                  "\n                                                    Scan your matric card and do NOT\n                                                    remove it while you are creating\n                                                    your account.\n                                                "
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("img", {
-                                attrs: {
-                                  src: "images/register/matric.png",
-                                  alt: "matric card"
-                                }
-                              })
-                            ])
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-5" }, [
-                        _c("form", { staticClass: "form" }, [
-                          _c("div", { staticClass: "content" }, [
-                            _c("div", { staticClass: "text-center" }, [
-                              _c("h4", [_vm._v("Fill your information.")])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "input-group" }, [
-                              _c("span", { staticClass: "input-group-addon" }, [
-                                _c("i", { staticClass: "material-icons" }, [
-                                  _vm._v("person")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "First Name..."
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "input-group" }, [
-                              _c("span", { staticClass: "input-group-addon" }, [
-                                _c("i", { staticClass: "material-icons" }, [
-                                  _vm._v("email")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "email",
-                                  placeholder: "Email..."
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "input-group" }, [
-                              _c("span", { staticClass: "input-group-addon" }, [
-                                _c("i", { staticClass: "material-icons" }, [
-                                  _vm._v("school")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Matric Number..."
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "input-group" }, [
-                              _c("span", { staticClass: "input-group-addon" }, [
-                                _c("i", { staticClass: "material-icons" }, [
-                                  _vm._v("sim_card_alert")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Matric Number..."
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "input-group" }, [
-                              _c("span", { staticClass: "input-group-addon" }, [
-                                _c("i", { staticClass: "material-icons" }, [
-                                  _vm._v("lock_outline")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "password",
-                                  placeholder: "Password..."
-                                }
-                              })
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "footer text-center" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "btn btn-rose btn-round",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Get Started")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "btn btn-simple btn-round",
-                                attrs: { href: "/login" }
-                              },
-                              [_vm._v("have account? login")]
-                            )
-                          ])
-                        ])
-                      ])
-                    ])
-                  ])
-                ])
-              ])
+    return _c("div", { staticClass: "content" }, [
+      _c("div", { staticClass: "info info-horizontal" }, [
+        _c("div", { staticClass: "icon icon-rose" }, [
+          _c("i", { staticClass: "material-icons" }, [_vm._v("nfc")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "description" }, [
+          _c("h4", { staticClass: "info-title" }, [_vm._v("Matric Card")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "description" }, [
+            _vm._v(
+              "\n                                                    Scan your matric card and do NOT\n                                                    remove it while you are creating\n                                                    your account.\n                                                "
+            )
+          ]),
+          _vm._v(" "),
+          _c("img", {
+            attrs: { src: "images/register/matric.png", alt: "matric card" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("form", { staticClass: "form" }, [
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "text-center" }, [
+          _c("h4", [_vm._v("Fill your information.")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group" }, [
+          _c("span", { staticClass: "input-group-addon" }, [
+            _c("i", { staticClass: "material-icons" }, [_vm._v("person")])
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "First Name..." }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group" }, [
+          _c("span", { staticClass: "input-group-addon" }, [
+            _c("i", { staticClass: "material-icons" }, [_vm._v("email")])
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "email", placeholder: "Email..." }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group" }, [
+          _c("span", { staticClass: "input-group-addon" }, [
+            _c("i", { staticClass: "material-icons" }, [_vm._v("school")])
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Matric Number..." }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group" }, [
+          _c("span", { staticClass: "input-group-addon" }, [
+            _c("i", { staticClass: "material-icons" }, [
+              _vm._v("sim_card_alert")
             ])
-          ]
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Matric Number..." }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group" }, [
+          _c("span", { staticClass: "input-group-addon" }, [
+            _c("i", { staticClass: "material-icons" }, [_vm._v("lock_outline")])
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "password", placeholder: "Password..." }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "footer text-center" }, [
+        _c(
+          "a",
+          { staticClass: "btn btn-rose btn-round", attrs: { href: "#" } },
+          [_vm._v("Get Started")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-simple btn-round",
+            attrs: { href: "/login" }
+          },
+          [_vm._v("have account? login")]
         )
       ])
     ])
