@@ -6,7 +6,7 @@
 
 @section('content')
     @include('shared.navbar', ['theme' => "navbar-default bg-light-gradient"])
-    <register server="{{ config('app.server') }}"></register>
+    <register server="{{ config('app.server') }}" :colleges="{{ $colleges }}"></register>
 @endsection
 
 @section('custom_js')

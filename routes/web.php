@@ -11,21 +11,20 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-Route::group(['prefix' => '/portal', 'middleware' => 'auth'], function(){
-    Route::get('/', ['uses' => 'PortalController@index'])->name('portal.index');
-    Route::post('/applications', ['uses' => 'PortalController@applications']);
+Route::group(['prefix' => '/portal'], function(){
+    Route::get('/', ['uses' => 'PortalController@index'])->middleware('auth')->name('portal.index');
+    Route::post('/applications', ['uses' => 'PortalController@applications'])->middleware('auth');
 
     Route::group(['prefix' => '/application'], function(){
-        Route::get('/create', ['uses' => 'ApplicationController@create'])->name('portal.application.create');
-        Route::post('/store', ['uses' => 'ApplicationController@store']);
-        Route::post('/types', ['uses' => 'ApplicationController@types']);
+        Route::get('/create', ['uses' => 'ApplicationController@create'])->middleware('auth')->name('portal.application.create');
+        Route::post('/store', ['uses' => 'ApplicationController@store'])->middleware('auth');
+        Route::post('/types', ['uses' => 'ApplicationController@types'])->middleware('auth');
+        
+        Route::get('/{application}', ['uses' => 'ApplicationController@edit']);
+        Route::post('/{application}/update', ['uses' => 'ApplicationController@update']);
     });
     
     Route::group(['prefix' => '/college'], function(){
-        Route::get('/all', ['uses' => 'CollegeController@all']);
-        Route::post('/courses', ['uses' => 'CollegeController@courses']);
+        Route::post('/courses', ['uses' => 'CollegeController@courses'])->middleware('auth');
     });
 });
-
-Route::get('/application/{application}', ['uses' => 'ApplicationController@edit']);
-Route::post('/application/{application}/update', ['uses' => 'ApplicationController@update']);

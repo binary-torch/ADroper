@@ -14,6 +14,13 @@ class College extends Model
     protected $guarded = [];
     
     /**
+     * Hide some fields from public.
+     *
+     * @var array
+     */
+    protected $hidden = ["created_at", "updated_at"];
+    
+    /**
      * Get all courses of this college.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

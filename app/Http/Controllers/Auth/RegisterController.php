@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\College;
+use App\Http\Resources\CollegeCollection;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -46,7 +48,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('auth.register.index');
+        return view('auth.register.index', ['colleges' => College::all()]);
     }
 
     /**

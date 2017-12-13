@@ -38,34 +38,41 @@
                                                     <span class="input-group-addon">
                                                         <i class="material-icons">person</i>
                                                     </span>
-                                                    <input type="text" class="form-control" placeholder="First Name...">
+                                                    <input type="text" v-model="form.name" class="form-control" placeholder="First Name...">
                                                 </div>
+                                                
                                                 <div class="input-group">
                                                     <span class="input-group-addon">
                                                         <i class="material-icons">email</i>
                                                     </span>
-                                                    <input type="email" class="form-control" placeholder="Email...">
+                                                    <input type="email" v-model="form.email" class="form-control" placeholder="Email...">
                                                 </div>
                                                 
-                                                <div class="input-group" style="display: flex; align-items: center; width: 100%; padding-left: 15px;">
+                                                <div class="input-group" style="display: flex; align-items: center; width: 100%; padding-left: 15px; padding-top: 15px">
                                                     <i class="material-icons">school</i>
-                                                    <select class="selectpicker" data-style="select-with-transition" title="Single Select" data-size="10">
+                                                    <select class="selectpicker"
+                                                            data-style="select-with-transition"
+                                                            title="Single Select"
+                                                            v-model="form.college_id"
+                                                            data-size="10">
                                                         <option disabled selected>Your kulliyah..</option>
-                                                        <option value="Engineering">Engineering</option>
-                                                        <option value="KICT">KICT</option>
+                                                        <option v-for="college in colleges" :value="college.id">{{ college.name }}</option>
                                                     </select>
                                                 </div>
+    
+                                                
                                                 <div class="input-group">
                                                     <span class="input-group-addon">
                                                         <i class="material-icons">sim_card_alert</i>
                                                     </span>
-                                                    <input type="text" class="form-control" placeholder="Matric Number...">
+                                                    <input type="number" v-model="form.matric_number" class="form-control" placeholder="Matric Number...">
                                                 </div>
+                                                
                                                 <div class="input-group">
                                                     <span class="input-group-addon">
                                                         <i class="material-icons">lock_outline</i>
                                                     </span>
-                                                    <input type="password" placeholder="Password..." class="form-control" />
+                                                    <input type="password" v-model="form.password" placeholder="Password..." class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="footer text-center">
@@ -81,6 +88,8 @@
                 </div>
             </div>
         </div>
+        
+        <loader v-if="isLoading"></loader>
     </div>
 </template>
 
@@ -103,7 +112,7 @@
                 url: "/register"
             }
         },
-        props: ['server'],
+        props: ['server', 'colleges'],
         computed: {
             isLocalServer() {
                 return this.server == "local";
@@ -122,7 +131,6 @@
                 this.isLoading = true;
                 this.form.post(this.url).then(response => {
                     this.isLoading = false;
-                    window.location.replace("/portal");
                 }).catch(() => {
                     this.isLoading = false;
                 });
@@ -137,5 +145,9 @@
 <style>
     .btn-group.bootstrap-select.input-group-btn {
         padding: 0 0 0 23px; width: 100% !important;
+    }
+
+    .bootstrap-select.btn-group .dropdown-toggle .filter-option {
+        text-align: left;
     }
 </style>
