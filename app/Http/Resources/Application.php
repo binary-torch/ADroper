@@ -22,7 +22,7 @@ class Application extends Resource
             "type" => $this->type->name,
             "status" => $this->status->name,
             "message" => $this->message,
-            "percentage" => ApplicationStatus::percentage($this->percentage),
+            "percentage" => ApplicationStatus::percentage($this->status->name),
             "feedback" => ApplicationStatus::feedback($this->status->name),
         ];
     }
