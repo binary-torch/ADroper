@@ -35,39 +35,42 @@
                                                     <h4>Fill your information.</h4>
                                                 </div>
                                                 <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="material-icons">person</i>
-                                                </span>
+                                                    <span class="input-group-addon">
+                                                        <i class="material-icons">person</i>
+                                                    </span>
                                                     <input type="text" class="form-control" placeholder="First Name...">
                                                 </div>
                                                 <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="material-icons">email</i>
-                                                </span>
+                                                    <span class="input-group-addon">
+                                                        <i class="material-icons">email</i>
+                                                    </span>
                                                     <input type="email" class="form-control" placeholder="Email...">
                                                 </div>
-                                                <div class="input-group">
-                                                <span class="input-group-addon">
+                                                
+                                                <div class="input-group" style="display: flex; align-items: center; width: 100%; padding-left: 15px;">
                                                     <i class="material-icons">school</i>
-                                                </span>
+                                                    <select class="selectpicker" data-style="select-with-transition" title="Single Select" data-size="10">
+                                                        <option disabled selected>Your kulliyah..</option>
+                                                        <option value="Engineering">Engineering</option>
+                                                        <option value="KICT">KICT</option>
+                                                    </select>
+                                                </div>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="material-icons">sim_card_alert</i>
+                                                    </span>
                                                     <input type="text" class="form-control" placeholder="Matric Number...">
                                                 </div>
                                                 <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="material-icons">sim_card_alert</i>
-                                                </span>
-                                                    <input type="text" class="form-control" placeholder="Matric Number...">
-                                                </div>
-                                                <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="material-icons">lock_outline</i>
-                                                </span>
+                                                    <span class="input-group-addon">
+                                                        <i class="material-icons">lock_outline</i>
+                                                    </span>
                                                     <input type="password" placeholder="Password..." class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="footer text-center">
-                                                <a href="#" class="btn btn-rose btn-round">Get Started</a>
-                                                <a href="/login" class="btn btn-simple btn-round">have account? login</a>
+                                                <a href="#" class="btn btn-rose btn-round" :disabled="!this.form.valid()">Register</a>
+                                                <a href="/login" class="btn btn-simple btn-round">Login</a>
                                             </div>
                                         </form>
                                     </div>
@@ -93,7 +96,7 @@
                     "password" : ""
                 }),
                 isLoading: false,
-                url: "/login"
+                url: "/register"
             }
         },
         props: ['server'],
@@ -125,4 +128,10 @@
             loader
         }
     }
-</script>-
+</script>
+
+<style>
+    .btn-group.bootstrap-select.input-group-btn {
+        padding: 0 0 0 23px; width: 100% !important;
+    }
+</style>

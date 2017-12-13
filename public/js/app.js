@@ -76424,6 +76424,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(249)
+}
 var normalizeComponent = __webpack_require__(7)
 /* script */
 var __vue_script__ = __webpack_require__(238)
@@ -76432,7 +76436,7 @@ var __vue_template__ = __webpack_require__(239)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -76559,6 +76563,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -76571,7 +76578,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 "password": ""
             }),
             isLoading: false,
-            url: "/login"
+            url: "/register"
         };
     },
 
@@ -76645,7 +76652,29 @@ var render = function() {
                       : _vm._e(),
                     _vm._v(" "),
                     _c("div", { class: _vm.cardWidth }, [
-                      _vm._m(1, false, false)
+                      _c("form", { staticClass: "form" }, [
+                        _vm._m(1, false, false),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "footer text-center" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-rose btn-round",
+                              attrs: { href: "#", disabled: !this.form.valid() }
+                            },
+                            [_vm._v("Register")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-simple btn-round",
+                              attrs: { href: "/login" }
+                            },
+                            [_vm._v("Login")]
+                          )
+                        ])
+                      ])
                     ])
                   ])
                 ])
@@ -76688,85 +76717,92 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("form", { staticClass: "form" }, [
-      _c("div", { staticClass: "content" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _c("h4", [_vm._v("Fill your information.")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-group" }, [
-          _c("span", { staticClass: "input-group-addon" }, [
-            _c("i", { staticClass: "material-icons" }, [_vm._v("person")])
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", placeholder: "First Name..." }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-group" }, [
-          _c("span", { staticClass: "input-group-addon" }, [
-            _c("i", { staticClass: "material-icons" }, [_vm._v("email")])
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "email", placeholder: "Email..." }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-group" }, [
-          _c("span", { staticClass: "input-group-addon" }, [
-            _c("i", { staticClass: "material-icons" }, [_vm._v("school")])
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", placeholder: "Matric Number..." }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-group" }, [
-          _c("span", { staticClass: "input-group-addon" }, [
-            _c("i", { staticClass: "material-icons" }, [
-              _vm._v("sim_card_alert")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", placeholder: "Matric Number..." }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-group" }, [
-          _c("span", { staticClass: "input-group-addon" }, [
-            _c("i", { staticClass: "material-icons" }, [_vm._v("lock_outline")])
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "password", placeholder: "Password..." }
-          })
-        ])
+    return _c("div", { staticClass: "content" }, [
+      _c("div", { staticClass: "text-center" }, [
+        _c("h4", [_vm._v("Fill your information.")])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "footer text-center" }, [
-        _c(
-          "a",
-          { staticClass: "btn btn-rose btn-round", attrs: { href: "#" } },
-          [_vm._v("Get Started")]
-        ),
+      _c("div", { staticClass: "input-group" }, [
+        _c("span", { staticClass: "input-group-addon" }, [
+          _c("i", { staticClass: "material-icons" }, [_vm._v("person")])
+        ]),
         _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-simple btn-round",
-            attrs: { href: "/login" }
-          },
-          [_vm._v("have account? login")]
-        )
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "First Name..." }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group" }, [
+        _c("span", { staticClass: "input-group-addon" }, [
+          _c("i", { staticClass: "material-icons" }, [_vm._v("email")])
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "email", placeholder: "Email..." }
+        })
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "input-group",
+          staticStyle: {
+            display: "flex",
+            "align-items": "center",
+            width: "100%",
+            "padding-left": "15px"
+          }
+        },
+        [
+          _c("i", { staticClass: "material-icons" }, [_vm._v("school")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              staticClass: "selectpicker",
+              attrs: {
+                "data-style": "select-with-transition",
+                title: "Single Select",
+                "data-size": "10"
+              }
+            },
+            [
+              _c("option", { attrs: { disabled: "", selected: "" } }, [
+                _vm._v("Your kulliyah..")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Engineering" } }, [
+                _vm._v("Engineering")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "KICT" } }, [_vm._v("KICT")])
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group" }, [
+        _c("span", { staticClass: "input-group-addon" }, [
+          _c("i", { staticClass: "material-icons" }, [_vm._v("sim_card_alert")])
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "Matric Number..." }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group" }, [
+        _c("span", { staticClass: "input-group-addon" }, [
+          _c("i", { staticClass: "material-icons" }, [_vm._v("lock_outline")])
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "password", placeholder: "Password..." }
+        })
       ])
     ])
   }
@@ -76785,6 +76821,54 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 241 */,
+/* 242 */,
+/* 243 */,
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(250);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(19)("19f1e284", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-dc2a60ba\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Register.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-dc2a60ba\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Register.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(14)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.btn-group.bootstrap-select.input-group-btn {\n    padding: 0 0 0 23px; width: 100% !important;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);
