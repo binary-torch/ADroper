@@ -38,6 +38,13 @@
                                         </div>
                                     </div>
                                     <div class="footer text-center">
+    
+                                        <div class="alert alert-danger" v-if="form.errors.any()" style="margin: 0 10px;" data-notify="container">
+                                            <span data-notify="message">
+                                                Opps, Please check your credentials..
+                                            </span>
+                                        </div>
+                                        
                                         <button @click.prevent="submit()" class="btn btn-rose btn-wd btn-lg" :disabled="!this.form.valid()">Login</button>
                                         <a href="/register" class="btn btn-simple btn-wd btn-lg">Or SignUp</a>
                                     </div>

@@ -74573,7 +74573,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this3.isLoading = false;
                 window.location.replace("/portal");
             }).catch(function (error) {
-                alert("something went wrong!");
+                alert("You have submitted this request already!");
                 _this3.isLoading = false;
             });
         }
@@ -75192,6 +75192,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -75581,6 +75588,28 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "footer text-center" }, [
+                            _vm.form.errors.any()
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass: "alert alert-danger",
+                                    staticStyle: { margin: "0 10px" },
+                                    attrs: { "data-notify": "container" }
+                                  },
+                                  [
+                                    _c(
+                                      "span",
+                                      { attrs: { "data-notify": "message" } },
+                                      [
+                                        _vm._v(
+                                          "\n                                            Opps, Please check your credentials..\n                                        "
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
                             _c(
                               "button",
                               {

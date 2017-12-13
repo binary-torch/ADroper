@@ -343,7 +343,7 @@
                     this.isLoading = false;
                     window.location.replace("/portal");
                 }).catch(error => {
-                    alert("something went wrong!");
+                    alert("You have submitted this request already!");
                     this.isLoading = false;
                 });
             }
