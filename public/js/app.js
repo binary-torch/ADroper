@@ -75218,10 +75218,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         submit: function submit() {
             var _this = this;
 
+            if (!this.form.valid()) return;
+
             this.isLoading = true;
             this.form.post(this.url).then(function (response) {
                 _this.isLoading = false;
-                _this.success = true;
                 window.location.replace("/portal");
             }).catch(function () {
                 _this.isLoading = false;
@@ -75268,6 +75269,17 @@ var Form = function () {
             }
 
             return data;
+        }
+    }, {
+        key: 'valid',
+        value: function valid() {
+            for (var property in this.originalData) {
+                if (this[property] == "") {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }, {
         key: 'reset',
@@ -75573,6 +75585,7 @@ var render = function() {
                               "button",
                               {
                                 staticClass: "btn btn-rose btn-wd btn-lg",
+                                attrs: { disabled: !this.form.valid() },
                                 on: {
                                   click: function($event) {
                                     $event.preventDefault()

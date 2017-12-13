@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
                                     <div class="footer text-center">
-                                        <button @click.prevent="submit()" class="btn btn-rose btn-wd btn-lg">Login</button>
+                                        <button @click.prevent="submit()" class="btn btn-rose btn-wd btn-lg" :disabled="!this.form.valid()">Login</button>
                                         <a href="/register" class="btn btn-simple btn-wd btn-lg">Or SignUp</a>
                                     </div>
                                 </div>
@@ -72,14 +72,15 @@
         computed: {
             isLocalServer() {
                 return this.server == "local";
-            }
+            },
         },
         methods: {
             submit() {
+                if( ! this.form.valid() ) return;
+                
                 this.isLoading = true;
                 this.form.post(this.url).then(response => {
                     this.isLoading = false;
-                    this.success = true;
                     window.location.replace("/portal");
                 }).catch(() => {
                     this.isLoading = false;

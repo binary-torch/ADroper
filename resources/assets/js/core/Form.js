@@ -22,6 +22,16 @@ class Form {
         return data;
     }
 
+    valid() {
+        for (let property in this.originalData) {
+            if(this[property] == "") {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     reset() {
         for (let field in this.originalData) {
             this[field] = '';
