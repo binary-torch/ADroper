@@ -28,10 +28,4 @@ Route::group(['prefix' => '/portal', 'middleware' => 'auth'], function(){
 });
 
 Route::get('/application/{token}', ['uses' => 'ApplicationController@edit']);
-Route::get('/application/{token}/update', ['uses' => 'ApplicationController@update']);
-
-Route::get('/mailable', function () {
-    $application = App\Application::find(1);
-    
-    return new App\Mail\ApplicationCreated($application);
-});
+Route::post('/application/{token}/update', ['uses' => 'ApplicationController@update']);
