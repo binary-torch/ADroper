@@ -88,36 +88,15 @@
                         <div class="margin-top-20">
                             <h3><i class="material-icons">assignment</i> Application Progress</h3>
     
-                            <div class="alert alert-info alert-with-icon" data-notify="container">
+                            <progress-bar style="margin-top: 15px;" :percentage=selectedApplication.percentage :type="progressStatus(selectedApplication.status)"></progress-bar>
+                            
+                            <div class="alert alert-with-icon" :class="alertLabel(selectedApplication.status)" data-notify="container">
                                 <i class="material-icons" data-notify="icon">notifications</i>
                                 <span data-notify="message">
-                                    Your application in progress of getting lecturer approval.
+                                    {{ selectedApplication.feedback }} {{ selectedApplication.message }}
                                 </span>
                             </div>
     
-                            <br>
-                            <progress-bar style="margin-top: 15px;" :percentage=selectedApplication.percentage :type="progressStatus(selectedApplication.status)"></progress-bar>
-                            <div class="col-md-3">
-                                <h6>
-                                    Sent
-                                </h6>
-                            </div>
-                            <div class="col-xs-3">
-                                <h6>
-                                    Lecturer Approval
-                                </h6>
-                            </div>
-                            <div class="col-xs-3">
-                                <h6>
-                                    S.A. Approval
-                                </h6>
-                            </div>
-                            <div class="col-xs-3">
-                                <h6>
-                                    Course Added
-                                </h6>
-                            </div>
-                            
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -162,8 +141,10 @@
                 return status.includes('Rej') ? "danger" : "success";
             },
             label(status){
-                console.log(status);
                 return status.includes('Drop') ? "label-danger" : "label-success";
+            },
+            alertLabel(status){
+                return status.includes('Rej') ? "alert-danger" : "alert-info";
             },
             showApplication(application){
                 this.showAllApplications = false;

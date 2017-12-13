@@ -43,16 +43,19 @@ class ApplicationStatus extends Model
      * @return int
      */
     public static function percentage($status){
-        switch ($status) {
-            case self::Sent:
-                return 25;
-            case self::LecturerApproved || self::LecturerRejected:
-                return 50;
-            case self::SAApproved || self::SARejected:
-                return 75;
-            case self::Completed:
-                return 100;
+        $percentage = 0;
+        
+        if($status == self::Sent){
+            $percentage = 25;
+        }else if($status == self::LecturerApproved || $status == self::LecturerRejected){
+            $percentage = 50;
+        }else if($status == self::SAApproved || $status == self::SARejected){
+            $percentage = 75;
+        }else if($status == self::Completed){
+            $percentage = 100;
         }
+        
+        return $percentage;
     }
     
     /**

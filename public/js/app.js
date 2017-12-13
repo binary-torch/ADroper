@@ -75883,27 +75883,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -75939,8 +75918,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return status.includes('Rej') ? "danger" : "success";
         },
         label: function label(status) {
-            console.log(status);
             return status.includes('Drop') ? "label-danger" : "label-success";
+        },
+        alertLabel: function alertLabel(status) {
+            return status.includes('Rej') ? "alert-danger" : "alert-info";
         },
         showApplication: function showApplication(application) {
             this.showAllApplications = false;
@@ -76331,10 +76312,23 @@ var render = function() {
                               _vm._v(" Application Progress")
                             ]),
                             _vm._v(" "),
+                            _c("progress-bar", {
+                              staticStyle: { "margin-top": "15px" },
+                              attrs: {
+                                percentage: _vm.selectedApplication.percentage,
+                                type: _vm.progressStatus(
+                                  _vm.selectedApplication.status
+                                )
+                              }
+                            }),
+                            _vm._v(" "),
                             _c(
                               "div",
                               {
-                                staticClass: "alert alert-info alert-with-icon",
+                                staticClass: "alert alert-with-icon",
+                                class: _vm.alertLabel(
+                                  _vm.selectedApplication.status
+                                ),
                                 attrs: { "data-notify": "container" }
                               },
                               [
@@ -76352,56 +76346,20 @@ var render = function() {
                                   { attrs: { "data-notify": "message" } },
                                   [
                                     _vm._v(
-                                      "\n                                Your application in progress of getting lecturer approval.\n                            "
+                                      "\n                                " +
+                                        _vm._s(
+                                          _vm.selectedApplication.feedback
+                                        ) +
+                                        " " +
+                                        _vm._s(
+                                          _vm.selectedApplication.message
+                                        ) +
+                                        "\n                            "
                                     )
                                   ]
                                 )
                               ]
                             ),
-                            _vm._v(" "),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("progress-bar", {
-                              staticStyle: { "margin-top": "15px" },
-                              attrs: {
-                                percentage: _vm.selectedApplication.percentage,
-                                type: _vm.progressStatus(
-                                  _vm.selectedApplication.status
-                                )
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-3" }, [
-                              _c("h6", [
-                                _vm._v(
-                                  "\n                                Sent\n                            "
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-xs-3" }, [
-                              _c("h6", [
-                                _vm._v(
-                                  "\n                                Lecturer Approval\n                            "
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-xs-3" }, [
-                              _c("h6", [
-                                _vm._v(
-                                  "\n                                S.A. Approval\n                            "
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-xs-3" }, [
-                              _c("h6", [
-                                _vm._v(
-                                  "\n                                Course Added\n                            "
-                                )
-                              ])
-                            ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "clearfix" })
                           ],
