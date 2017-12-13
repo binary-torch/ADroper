@@ -24,24 +24,6 @@ class ApplicationController extends Controller
     }
     
     /**
-     * Get the available courses and sections.
-     *
-     * @return PortalController[]|CourseCollection|\Illuminate\Database\Eloquent\Collection
-     */
-    public function courses(){
-        return new CourseCollection(Course::all());
-    }
-    
-    /**
-     * Get the available courses and sections.
-     *
-     * @return ApplicationTypeCollection
-     */
-    public function types(){
-        return new ApplicationTypeCollection(ApplicationType::all());
-    }
-    
-    /**
      * Store a newly created resource in storage.
      *
      * @param CreateApplicationFormRequest|Request $request
@@ -49,17 +31,7 @@ class ApplicationController extends Controller
      */
     public function store(CreateApplicationFormRequest $request)
     {
-        $application = auth()->user()->applications()->where([
-            'course_id'             =>  $request->course_id,
-            'section_id'            => $request->section_id,
-            'application_type_id'   => $request->application_type_id
-        ])->first();
-        
-        if($application){
-            return response()->json([
-                'error' => 'You have requested this course already!',
-            ], 403);
-        }
+        $this->authorize('create', Application::class);
         
         Auth::user()->applications()->create($request->all());
         
@@ -67,7 +39,7 @@ class ApplicationController extends Controller
             'data' => 'okay',
         ], 200);
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -89,5 +61,23 @@ class ApplicationController extends Controller
     public function update(Request $request, Application $application)
     {
         //
+    }
+    
+    /**
+     * Get the available courses and sections.
+     *
+     * @return PortalController[]|CourseCollection|\Illuminate\Database\Eloquent\Collection
+     */
+    public function courses(){
+        return new CourseCollection(Course::all());
+    }
+    
+    /**
+     * Get the available courses and sections.
+     *
+     * @return ApplicationTypeCollection
+     */
+    public function types(){
+        return new ApplicationTypeCollection(ApplicationType::all());
     }
 }

@@ -26,7 +26,6 @@ class PortalController extends Controller
      */
     public function applications(Request $request)
     {
-//        return $request->user()->applications()->get();
         return new ApplicationCollection($request->user()->applications()->get());
     }
 }
