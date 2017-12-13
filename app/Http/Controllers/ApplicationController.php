@@ -6,8 +6,10 @@ use App\ApplicationType;
 use App\Application;
 use App\Http\Requests\CreateApplicationFormRequest;
 use App\Http\Resources\ApplicationTypeCollection;
+use App\Mail\ApplicationCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ApplicationController extends Controller
 {
@@ -31,22 +33,23 @@ class ApplicationController extends Controller
     {
         $this->authorize('create', Application::class);
         
-        Auth::user()->applications()->create($request->all());
+        $application = Auth::user()->applications()->create($request->all());
         
-        return response()->json([
-            'data' => 'okay',
-        ], 200);
+        $this->notifyLecturer($application);
+        
+        return response()
+            ->json([ 'data' => 'okay'], 200);
     }
     
     /**
-     * Display the specified resource.
+     * Display the specified resource for editing.
      *
      * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function show(Application $application)
+    public function edit(Application $application)
     {
-        //
+        return "pk";
     }
 
     /**
@@ -69,5 +72,15 @@ class ApplicationController extends Controller
     public function types()
     {
         return new ApplicationTypeCollection(ApplicationType::all());
+    }
+    
+    /**
+     * Send an email to the lecturer who teach the registered section by the student.
+     *
+     * @param Application $application
+     */
+    public function notifyLecturer(Application $application){
+        Mail::to($application->section->lecturer->email)
+            ->send(new ApplicationCreated($application));
     }
 }

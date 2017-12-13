@@ -18,7 +18,7 @@ class Application extends Model
      *
      * @var array
      */
-    protected $with = ['status', 'type', 'course', 'section'];
+    protected $with = ['user', 'status', 'type', 'course', 'section'];
     
     /**
      * Get the owner of this application
