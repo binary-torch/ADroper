@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a class="btn btn-round btn-compact btn-rose" href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        SH
+                        @firstLetters(auth()->user()->name)
                     </a>
                     <ul class="dropdown-menu">
                         <li>

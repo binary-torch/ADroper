@@ -18,7 +18,11 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
     
         Blade::directive('image', function ($path) {
-            return asset('images/' . $path);
+            return "<?php echo asset(\"images/$path\"); ?>";
+        });
+    
+        Blade::directive('firstLetters', function ($string) {
+            return "<?php echo StringManipulator::firstLetters($string); ?>";
         });
     }
 
