@@ -13,6 +13,8 @@ class Application extends Model
      */
     protected $guarded = [];
     
+    protected $hidden = ['token', 'created_at', 'updated_at'];
+    
     /**
      * The relations to eager load on every query.
      *

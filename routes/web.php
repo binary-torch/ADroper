@@ -33,5 +33,5 @@ Route::get('/application/{token}/update', ['uses' => 'ApplicationController@upda
 Route::get('/mailable', function () {
     $application = App\Application::find(1);
     
-    return new App\Mail\ApplicationLecturerApproved($application);
+    return new App\Mail\ApplicationCreated($application);
 });

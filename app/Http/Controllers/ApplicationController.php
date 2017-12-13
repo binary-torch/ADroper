@@ -33,7 +33,10 @@ class ApplicationController extends Controller
     {
         $this->authorize('create', Application::class);
         
-        $application = Auth::user()->applications()->create($request->all());
+        $fields = $request->all();
+        $fields["token"] = str_limit(md5($request->user()->email . str_random()), 25, '');
+        
+        $application = Auth::user()->applications()->create($fields);
         
         $this->notifyLecturer($application);
         
@@ -44,12 +47,12 @@ class ApplicationController extends Controller
     /**
      * Display the specified resource for editing.
      *
-     * @param  \App\Application  $application
+     * @param  $token
      * @return \Illuminate\Http\Response
      */
-    public function edit(Application $application)
+    public function edit($token)
     {
-        return "pk";
+        return view('portal.application.edit', ["application" => Application::whereToken($token)->firstOrFail()]);
     }
 
     /**
