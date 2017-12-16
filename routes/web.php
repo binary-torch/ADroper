@@ -31,5 +31,5 @@ Route::group(['prefix' => '/portal'], function(){
 
 Route::get('/test/{card}', function($card){
     event(new \App\Events\NewCard($card));
-    echo "okay";
+    echo "okay la";
 });

@@ -22,6 +22,7 @@
                                                         remove it while you are creating
                                                         your account.
                                                     </p>
+    
                                                     <img src="images/register/matric.png" alt="matric card">
 
                                                     <div class="alert alert-info" v-if="form.matric_uuid">
@@ -101,7 +102,7 @@
     import loader from '../components/Loader.vue'
     import Form from '../core/Form'
     import Echo from "laravel-echo"
-
+    
     export default {
         data(){
             return {
@@ -142,18 +143,20 @@
             }
         },
         mounted() {
+            if(this.isLocalServer){
+                const io = window.io = require('socket.io-client');
+                let echo = new Echo({
+                    broadcaster: 'socket.io',
+                    host: window.location.hostname + ':6001'
+                });
 
-            console.log(window.location.hostname);
-
-            let echo = new Echo({
-                broadcaster: 'socket.io',
-                host: window.location.hostname + ':6001'
-            });
-
-            echo.channel('cards')
-            .listen('NewCard', (e) => {
-                this.form.matric_uuid = e.card;
-            });
+                echo.channel('cards')
+                    .listen('NewCard', (e) => {
+                        this.form.matric_uuid = e.card;
+                    });
+            }else{
+                this.form.removeField('matric_uuid');
+            }
         },
         components: {
             loader

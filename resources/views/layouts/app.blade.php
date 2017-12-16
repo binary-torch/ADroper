@@ -50,7 +50,11 @@
         }
         $('[data-toggle="tooltip"]').tooltip();
     </script>
-    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
+
+    @if(config('app.server') == 'local')
+        <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
+    @endif
+
     @yield('custom_js')
 </body>
 </html>

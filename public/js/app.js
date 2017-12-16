@@ -51602,6 +51602,11 @@ var Form = function () {
             this.errors.clear();
         }
     }, {
+        key: 'removeField',
+        value: function removeField(field) {
+            delete this[field];
+        }
+    }, {
         key: 'post',
         value: function post(url) {
             return this.submit('post', url);
@@ -51732,8 +51737,6 @@ __webpack_require__(205);
 
 __webpack_require__(0);
 __webpack_require__(207);
-// require('socket.io');
-var io = window.io = __webpack_require__(218);
 
 __webpack_require__(242);
 __webpack_require__(243);
@@ -83771,6 +83774,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -83821,16 +83825,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this2 = this;
 
-        console.log(window.location.hostname);
+        if (this.isLocalServer) {
+            var io = window.io = __webpack_require__(218);
+            var echo = new __WEBPACK_IMPORTED_MODULE_2_laravel_echo___default.a({
+                broadcaster: 'socket.io',
+                host: window.location.hostname + ':6001'
+            });
 
-        var echo = new __WEBPACK_IMPORTED_MODULE_2_laravel_echo___default.a({
-            broadcaster: 'socket.io',
-            host: window.location.hostname + ':6001'
-        });
-
-        echo.channel('cards').listen('NewCard', function (e) {
-            _this2.form.matric_uuid = e.card;
-        });
+            echo.channel('cards').listen('NewCard', function (e) {
+                _this2.form.matric_uuid = e.card;
+            });
+        } else {
+            this.form.removeField('matric_uuid');
+        }
     },
 
     components: {

@@ -40,6 +40,10 @@ class Form {
         this.errors.clear();
     }
 
+    removeField(field) {
+        delete this[field];
+    }
+
     post(url) {
         return this.submit('post', url);
     }
