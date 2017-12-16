@@ -27,6 +27,8 @@ require('./material-kit/material.min');
 
 require('moment');
 require('spiritjs');
+// require('socket.io');
+const io = window.io = require('socket.io-client');
 
 require('./material-dashboard/arrive.min.js');
 require('./material-dashboard/perfect-scrollbar.jquery.min.js');

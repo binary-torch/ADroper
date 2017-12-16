@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
         });
     
         Blade::directive('firstLetters', function ($string) {
-            return "<?php echo StringManipulator::firstLetters($string); ?>";
+            return "<?php echo App\Helpers\StringManipulator::firstLetters($string); ?>";
         });
     }
 

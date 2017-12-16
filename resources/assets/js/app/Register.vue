@@ -23,6 +23,10 @@
                                                         your account.
                                                     </p>
                                                     <img src="images/register/matric.png" alt="matric card">
+
+                                                    <div class="alert alert-info" v-if="form.matric_uuid">
+                                                        Card Id: {{ form.matric_uuid }}
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -96,6 +100,7 @@
 <script>
     import loader from '../components/Loader.vue'
     import Form from '../core/Form'
+    import Echo from "laravel-echo"
 
     export default {
         data(){
@@ -135,6 +140,20 @@
                     this.isLoading = false;
                 });
             }
+        },
+        mounted() {
+
+            console.log(window.location.hostname);
+
+            let echo = new Echo({
+                broadcaster: 'socket.io',
+                host: window.location.hostname + ':6001'
+            });
+
+            echo.channel('cards')
+            .listen('NewCard', (e) => {
+                this.form.matric_uuid = e.card;
+            });
         },
         components: {
             loader

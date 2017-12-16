@@ -28,3 +28,8 @@ Route::group(['prefix' => '/portal'], function(){
         Route::post('/courses', ['uses' => 'CollegeController@courses'])->middleware('auth');
     });
 });
+
+Route::get('/test/{card}', function($card){
+    event(new \App\Events\NewCard($card));
+    echo "okay";
+});

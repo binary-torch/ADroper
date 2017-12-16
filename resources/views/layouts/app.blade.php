@@ -50,7 +50,7 @@
         }
         $('[data-toggle="tooltip"]').tooltip();
     </script>
-
+    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
     @yield('custom_js')
 </body>
 </html>
