@@ -9,6 +9,7 @@ use App\Http\Requests\CreateApplicationFormRequest;
 use App\Http\Resources\ApplicationTypeCollection;
 use App\Mail\ApplicationCreated;
 use App\Mail\ApplicationLecturerApproved;
+use App\Mail\ApplicationUpdated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -77,7 +78,8 @@ class ApplicationController extends Controller
         }else if($application->status->name == ApplicationStatus::LecturerApproved){
             $application->handleStudentsAffairsApproval($request->isApproved, $request->message);
         }
-        
+    
+        $this->notifyStudent($application);
         return response()->json('okay',200);
     }
     
@@ -89,6 +91,16 @@ class ApplicationController extends Controller
     public function types()
     {
         return new ApplicationTypeCollection(ApplicationType::all());
+    }
+    
+    /**
+     * Send an email to the student when the application updated.
+     *
+     * @param Application $application
+     */
+    public function notifyStudent(Application $application){
+        Mail::to($application->user->email)
+            ->send(new ApplicationUpdated($application));
     }
     
     /**
