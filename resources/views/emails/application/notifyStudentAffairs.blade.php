@@ -14,7 +14,7 @@ The student bellow wants to register this course:
 
 ---
 
-@component('mail::button', ['url' => url('/application/' . $application->token), 'color' => 'blue'])
+@component('mail::button', ['url' => url('/portal/application/' . $application->token), 'color' => 'blue'])
     Take an Action
 @endcomponent
 

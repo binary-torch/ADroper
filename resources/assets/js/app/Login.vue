@@ -13,12 +13,12 @@
                                             <img src="images/login/rfid.svg" alt="rfid logo">
                                             <h4 class="card-title">Scan your matric card to login</h4>
                                         </div>
-                                        <p class="category text-center">
+                                        <p class="category text-center" v-if="!matric_uuid">
                                             Or Be Classical
                                         </p>
                                     </div>
                                     <div class="content">
-                                        <div class="input-group">
+                                        <div class="input-group" v-if="!matric_uuid">
                                             <span class="input-group-addon">
                                                 <i class="material-icons">email</i>
                                             </span>
@@ -27,6 +27,11 @@
                                                 <input type="email" v-model="form.email" class="form-control">
                                             </div>
                                         </div>
+    
+                                        <div class="alert alert-info" v-if="matric_uuid">
+                                            Card Id: {{ matric_uuid }}
+                                        </div>
+                                        
                                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="material-icons">lock_outline</i>
@@ -63,6 +68,7 @@
 <script>
     import loader from '../components/Loader.vue'
     import Form from '../core/Form'
+    import Echo from 'laravel-echo'
 
     export default {
         data(){
@@ -72,6 +78,7 @@
                     "password" : ""
                 }),
                 isLoading: false,
+                matric_uuid: null,
                 url: "/login"
             }
         },
@@ -90,8 +97,35 @@
                     this.isLoading = false;
                     window.location.replace("/portal");
                 }).catch(() => {
+                    alert("Opps, something went wrong!");
                     this.isLoading = false;
                 });
+            },
+            validateMatricUUID(matric_uuid) {
+                this.isLoading = true;
+                axios.post('/login/validate/matric_uuid', {
+                    'matric_uuid' : matric_uuid
+                }).then(response => {
+                    this.form.email = response.data.data;
+                    this.isLoading = false;
+                }).catch(error => {
+                    this.isLoading = false;
+                });
+            }
+        },
+        mounted() {
+            if(this.isLocalServer){
+                const io = window.io = require('socket.io-client');
+                let echo = new Echo({
+                    broadcaster: 'socket.io',
+                    host: window.location.hostname + ':6001'
+                });
+
+                echo.channel('cards')
+                    .listen('NewCard', (e) => {
+                        this.matric_uuid = e.card;
+                        this.validateMatricUUID(e.card);
+                    });
             }
         },
         components: {

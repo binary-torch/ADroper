@@ -5,6 +5,7 @@ Route::get('/about', ['uses' => 'PageController@about'])->name('about.index');
 Route::get('/privacy', ['uses' => 'PageController@privacy'])->name('privacy.index');
 Route::get('/terms', ['uses' => 'PageController@terms'])->name('terms.index');
 
+Route::post('/login/validate/matric_uuid', ['uses' => 'Auth\LoginController@validateMatricUUID']);
 Auth::routes();
 
 Route::group(['prefix' => 'admin'], function () {

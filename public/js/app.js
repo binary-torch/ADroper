@@ -82400,6 +82400,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Loader_vue__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Loader_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Loader_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_Form__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_laravel_echo__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_laravel_echo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_laravel_echo__);
 //
 //
 //
@@ -82462,6 +82464,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 
@@ -82474,6 +82482,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 "password": ""
             }),
             isLoading: false,
+            matric_uuid: null,
             url: "/login"
         };
     },
@@ -82495,10 +82504,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.isLoading = false;
                 window.location.replace("/portal");
             }).catch(function () {
+                alert("Opps, something went wrong!");
                 _this.isLoading = false;
+            });
+        },
+        validateMatricUUID: function validateMatricUUID(matric_uuid) {
+            var _this2 = this;
+
+            this.isLoading = true;
+            axios.post('/login/validate/matric_uuid', {
+                'matric_uuid': matric_uuid
+            }).then(function (response) {
+                _this2.form.email = response.data.data;
+                _this2.isLoading = false;
+            }).catch(function (error) {
+                _this2.isLoading = false;
             });
         }
     },
+    mounted: function mounted() {
+        var _this3 = this;
+
+        if (this.isLocalServer) {
+            var io = window.io = __webpack_require__(218);
+            var echo = new __WEBPACK_IMPORTED_MODULE_2_laravel_echo___default.a({
+                broadcaster: 'socket.io',
+                host: window.location.hostname + ':6001'
+            });
+
+            echo.channel('cards').listen('NewCard', function (e) {
+                _this3.matric_uuid = e.card;
+                _this3.validateMatricUUID(e.card);
+            });
+        }
+    },
+
     components: {
         loader: __WEBPACK_IMPORTED_MODULE_0__components_Loader_vue___default.a
     }
@@ -82642,60 +82682,76 @@ var render = function() {
                             ? _c("div", [
                                 _vm._m(0, false, false),
                                 _vm._v(" "),
-                                _c(
-                                  "p",
-                                  { staticClass: "category text-center" },
-                                  [
-                                    _vm._v(
-                                      "\n                                        Or Be Classical\n                                    "
+                                !_vm.matric_uuid
+                                  ? _c(
+                                      "p",
+                                      { staticClass: "category text-center" },
+                                      [
+                                        _vm._v(
+                                          "\n                                        Or Be Classical\n                                    "
+                                        )
+                                      ]
                                     )
-                                  ]
-                                )
+                                  : _vm._e()
                               ])
                             : _vm._e(),
                           _vm._v(" "),
                           _c("div", { staticClass: "content" }, [
-                            _c("div", { staticClass: "input-group" }, [
-                              _vm._m(1, false, false),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "form-group label-floating" },
-                                [
-                                  _c(
-                                    "label",
-                                    { staticClass: "control-label" },
-                                    [_vm._v("Email address")]
-                                  ),
+                            !_vm.matric_uuid
+                              ? _c("div", { staticClass: "input-group" }, [
+                                  _vm._m(1, false, false),
                                   _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.email,
-                                        expression: "form.email"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: { type: "email" },
-                                    domProps: { value: _vm.form.email },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "form-group label-floating"
+                                    },
+                                    [
+                                      _c(
+                                        "label",
+                                        { staticClass: "control-label" },
+                                        [_vm._v("Email address")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.email,
+                                            expression: "form.email"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: { type: "email" },
+                                        domProps: { value: _vm.form.email },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.form,
+                                              "email",
+                                              $event.target.value
+                                            )
+                                          }
                                         }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "email",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              )
-                            ]),
+                                      })
+                                    ]
+                                  )
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.matric_uuid
+                              ? _c("div", { staticClass: "alert alert-info" }, [
+                                  _vm._v(
+                                    "\n                                        Card Id: " +
+                                      _vm._s(_vm.matric_uuid) +
+                                      "\n                                    "
+                                  )
+                                ])
+                              : _vm._e(),
                             _vm._v(" "),
                             _c("div", { staticClass: "input-group" }, [
                               _vm._m(2, false, false),
@@ -83817,7 +83873,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.isLoading = true;
             this.form.post(this.url).then(function (response) {
                 _this.isLoading = false;
-            }).catch(function () {
+                window.location.replace("/portal");
+            }).catch(function (error) {
+                alert("Opps, something went wrong!");
                 _this.isLoading = false;
             });
         }
@@ -84939,6 +84997,12 @@ var render = function() {
                                 attrs: {
                                   href: "#",
                                   disabled: !this.form.valid()
+                                },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.submit($event)
+                                  }
                                 }
                               },
                               [_vm._v("Register")]
@@ -85129,7 +85193,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         url: function url() {
-            return '/application/' + this.token + "/update";
+            return '/portal/application/' + this.token + "/update";
         },
         readyToReject: function readyToReject() {
             return this.message != '';

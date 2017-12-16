@@ -81,7 +81,7 @@
                                                 </div>
                                             </div>
                                             <div class="footer text-center">
-                                                <a href="#" class="btn btn-rose btn-round" :disabled="!this.form.valid()">Register</a>
+                                                <a href="#" class="btn btn-rose btn-round" :disabled="!this.form.valid()" @click.prevent="submit">Register</a>
                                                 <a href="/login" class="btn btn-simple btn-round">Login</a>
                                             </div>
                                         </form>
@@ -137,7 +137,9 @@
                 this.isLoading = true;
                 this.form.post(this.url).then(response => {
                     this.isLoading = false;
-                }).catch(() => {
+                    window.location.replace("/portal");
+                }).catch(error => {
+                    alert("Opps, something went wrong!");
                     this.isLoading = false;
                 });
             }

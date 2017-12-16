@@ -42,7 +42,7 @@
         },
         computed: {
             url() {
-                return '/application/' + this.token + "/update"
+                return '/portal/application/' + this.token + "/update"
             },
             readyToReject(){
                 return this.message != '';
