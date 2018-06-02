@@ -6,20 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class ApplicationStatus extends Model
 {
-    const Sent = "Sent";
-    const LecturerApproved = "Lecturer Approved";
-    const LecturerRejected = "Lecturer Rejected";
-    const SAApproved = "S.A. Approved";
-    const SARejected = "S.A. Rejected";
-    const Completed = "Completed";
-    
-    const SentResponse = "Your application has been sent and waiting for the lecturer approval.";
-    const LecturerApprovedResponse = "Congratulations, your application has been approved by your lecturer and now in process of getting students affairs approval.";
+    const Sent                     = "Sent";
+    const Completed                = "Completed";
+    const SAApproved               = "S.A. Approved";
+    const SARejected               = "S.A. Rejected";
+    const LecturerRejected         = "Lecturer Rejected";
+    const LecturerApproved         = "Lecturer Approved";
+
+    const SentResponse             = "Your application has been sent and waiting for the lecturer approval.";
+    const CompletedResponse        = "Yaah 🎉, congratulations the course has been added successfully, good luck in your semester.";
+    const SAApprovedResponse       = "Congratulations, your application has been approved by the students affairs and waiting to be added in the system.";
+    const SARejectedResponse       = "Sorry, your application has been rejected by the students affairs due to: ";
     const LecturerRejectedResponse = "Sorry, your application has been rejected by the lecturer due to: ";
-    const SAApprovedResponse = "Congratulations, your application has been approved by the students affairs and waiting to be added in the system.";
-    const SARejectedResponse = "Sorry, your application has been rejected by the students affairs due to: ";
-    const CompletedResponse = "Yaah 🎉, congratulations the course has been added successfully, good luck in your semester.";
-    
+    const LecturerApprovedResponse = "Congratulations, your application has been approved by your lecturer and now in process of getting students affairs approval.";
+
     /**
      * Don't auto-apply mass assignment protection.
      *

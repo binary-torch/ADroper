@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\ApplicationStatus;
-use App\ApplicationType;
 use App\Application;
-use App\Http\Requests\CreateApplicationFormRequest;
-use App\Http\Resources\ApplicationTypeCollection;
-use App\Mail\ApplicationCreated;
-use App\Mail\ApplicationLecturerApproved;
-use App\Mail\ApplicationUpdated;
+use App\ApplicationType;
+use App\ApplicationStatus;
 use Illuminate\Http\Request;
+use App\Mail\ApplicationCreated;
+use App\Mail\ApplicationUpdated;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\ApplicationLecturerApproved;
+use App\Http\Resources\ApplicationTypeCollection;
+use App\Http\Requests\CreateApplicationFormRequest;
 
 class ApplicationController extends Controller
 {
@@ -119,7 +119,6 @@ class ApplicationController extends Controller
      * @param Application $application
      */
     public function notifyStudentsAffairs(Application $application){
-        //$application->course->college->email
         Mail::to("test@cc.c")
             ->send(new ApplicationLecturerApproved($application));
     }

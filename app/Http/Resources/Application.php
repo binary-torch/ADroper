@@ -16,14 +16,14 @@ class Application extends Resource
     public function toArray($request)
     {
         return [
-            "course" => $this->course->name,
-            "section" => $this->section->number,
-            "lecturer" => $this->section->lecturer->name,
-            "type" => $this->type->name,
-            "status" => $this->status->name,
-            "message" => $this->message,
+            "course"     => $this->course->name,
+            "section"    => $this->section->number,
+            "lecturer"   => $this->section->lecturer->name,
+            "type"       => $this->type->name,
+            "status"     => $this->status->name,
+            "message"    => $this->message,
             "percentage" => ApplicationStatus::percentage($this->status->name),
-            "feedback" => ApplicationStatus::feedback($this->status->name),
+            "feedback"   => ApplicationStatus::feedback($this->status->name),
         ];
     }
 }

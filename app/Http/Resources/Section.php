@@ -15,9 +15,9 @@ class Section extends Resource
     public function toArray($request)
     {
         return [
-            "id" => $this->id,
-            "number" => $this->number,
-            "date" => $this->date,
+            "id"       => $this->id,
+            "number"   => $this->number,
+            "date"     => $this->date,
             "lecturer" => $this->lecturer->name,
         ];
     }

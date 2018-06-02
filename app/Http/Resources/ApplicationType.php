@@ -15,8 +15,8 @@ class ApplicationType extends Resource
     public function toArray($request)
     {
         return [
-            "id"        => $this->id,
-            "name"      => $this->name,
+            "id"   => $this->id,
+            "name" => $this->name,
         ];
     }
 }

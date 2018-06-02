@@ -12,6 +12,12 @@ class CollegeController extends Controller
      */
     public function courses()
     {
-        return new CourseCollection(auth()->user()->college()->first()->courses()->get());
+        return new CourseCollection(
+            auth()->user()
+                ->college()
+                ->first()
+                ->courses()
+                ->get()
+        );
     }
 }

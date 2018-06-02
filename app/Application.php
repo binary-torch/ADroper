@@ -80,7 +80,11 @@ class Application extends Model
     public function getRouteKeyName(){
         return 'token';
     }
-    
+
+    /**
+     * @param $isApproved
+     * @param $message
+     */
     public function handleLecturerApproval($isApproved, $message){
         $this->generateNewToken();
         $this->message = $message;
@@ -96,7 +100,11 @@ class Application extends Model
         
         $this->save();
     }
-    
+
+    /**
+     * @param $isApproved
+     * @param $message
+     */
     public function handleStudentsAffairsApproval($isApproved, $message){
         $this->token = null;
         $this->message = $message;
@@ -112,7 +120,10 @@ class Application extends Model
         
         $this->save();
     }
-    
+
+    /**
+     * Generate new token.
+     */
     public function generateNewToken(){
         $this->token = str_limit(md5( time() . str_random(25)), 25, '');
     }

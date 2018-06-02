@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ApplicationCollection;
 use Illuminate\Http\Request;
+use App\Http\Resources\ApplicationCollection;
 
 class PortalController extends Controller
 {
@@ -26,6 +26,10 @@ class PortalController extends Controller
      */
     public function applications(Request $request)
     {
-        return new ApplicationCollection($request->user()->applications()->get());
+        return new ApplicationCollection(
+            $request->user()
+                ->applications()
+                ->get()
+        );
     }
 }

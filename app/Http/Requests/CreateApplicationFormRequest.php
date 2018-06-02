@@ -25,8 +25,8 @@ class CreateApplicationFormRequest extends FormRequest
     {
         return [
             "application_type_id" => "required|exists:application_types,id",
-            "course_id" => "required|exists:courses,id",
-            "section_id" => "required|exists:sections,id"
+            "course_id"           => "required|exists:courses,id",
+            "section_id"          => "required|exists:sections,id"
         ];
     }
 }
